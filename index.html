@@ -56,6 +56,7 @@ body{
 .header-title h1{font-size:clamp(18px,2vw,23px);margin:0 0 3px;color:var(--navy);text-transform:uppercase;letter-spacing:.5px}
 .header-title p{font-size:12px;color:var(--muted);margin:0;font-weight:700}
 .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.mobile-actions-toggle{display:none}
 button{border:1px solid rgba(22,40,66,.08);border-radius:18px;padding:10px 14px;min-height:40px;font-weight:800;cursor:pointer;box-shadow:none;transition:transform .15s ease,filter .15s ease;background:#fff;color:var(--navy)}
 button:hover{transform:translateY(-1px);filter:brightness(.97)}
 .btn-primary{background:var(--navy);color:#fff}
@@ -84,7 +85,7 @@ textarea{min-height:105px;resize:vertical}.description-wrap{border-bottom:2px so
 .modal{position:fixed;inset:0;background:rgba(16,27,47,.58);z-index:50;display:none;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modal-card{background:#fff;border-radius:18px;max-width:520px;width:100%;box-shadow:0 28px 80px rgba(0,0,0,.28);overflow:hidden}.modal-head{background:var(--navy);color:#fff;padding:14px 18px;font-weight:900;border-bottom:4px solid var(--gold)}.modal-body{padding:16px;line-height:1.45}.missing-list{background:#f5efe2;border:1px solid #d7c49a;border-radius:12px;padding:10px 14px;color:#101b2f}.modal-foot{padding:12px 16px;display:flex;justify-content:flex-end;border-top:1px solid var(--line)}
 .toast{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);background:var(--navy);color:#fff;padding:14px 18px;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.25);z-index:80;opacity:0;pointer-events:none;transition:.22s;max-width:90%;text-align:center;font-weight:800}.toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
 
-@media (max-width:900px){.app-header{width:min(100% - 14px,1240px)}.cell{grid-template-columns:1fr}.form-grid,.signature-grid{grid-template-columns:1fr}.cell,.cell:nth-child(2n),.signatory-section{border-right:0}.label,.sig-label{border-right:0;border-bottom:1px solid var(--line)}.block-header{display:none}.block-row{grid-template-columns:1fr;border-bottom:1px solid var(--line)}.block-label,.block-control{border-right:0;border-bottom:1px solid var(--line);justify-content:flex-start}.block-control:last-child{border-bottom:0}.block-control::before{content:attr(data-mobile-label);font-size:12px;font-weight:900;color:var(--navy);min-width:88px;text-transform:uppercase}.block-row.half{grid-template-columns:1fr}.signatory-fields label{grid-template-columns:1fr}}
+@media (max-width:900px){.app-header{width:min(100% - 14px,1240px)}.mobile-actions-toggle{display:inline-flex;margin-left:auto}.actions{width:100%}.actions.mobile-collapsed{display:none!important}.cell{grid-template-columns:1fr}.form-grid,.signature-grid{grid-template-columns:1fr}.cell,.cell:nth-child(2n),.signatory-section{border-right:0}.label,.sig-label{border-right:0;border-bottom:1px solid var(--line)}.block-header{display:none}.block-row{grid-template-columns:1fr;border-bottom:1px solid var(--line)}.block-label,.block-control{border-right:0;border-bottom:1px solid var(--line);justify-content:flex-start}.block-control:last-child{border-bottom:0}.block-control::before{content:attr(data-mobile-label);font-size:12px;font-weight:900;color:var(--navy);min-width:88px;text-transform:uppercase}.block-row.half{grid-template-columns:1fr}.signatory-fields label{grid-template-columns:1fr}}
 @media (max-width:700px){.signatory-identity-row{grid-template-columns:1fr}}
 @media (max-width:620px){.app-header,.actions,.actions button{width:100%}.app-header{margin-top:7px;padding:12px 10px}.brand-wrap{width:100%}.container{width:min(100% - 14px,1240px);margin-top:10px}.top-strip{padding:22px 16px;align-items:flex-start}.top-strip .hotel,.top-strip .permit-title{width:100%;text-align:left}.inline-two,.inline-three{grid-template-columns:1fr}textarea{min-height:120px}}
 
@@ -168,7 +169,7 @@ body{background:radial-gradient(circle at top left,rgba(185,152,90,.16),transpar
 input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px}input:hover,select:hover,textarea:hover{background:#eef1f7}input:focus,select:focus,textarea:focus{border-color:#b9985a;box-shadow:0 0 0 4px rgba(185,152,90,.17);background:#fff}
 .warning,.regulations-ack{background:#f5efe2!important;color:#101b2f!important;border-color:#d7c49a!important}
 .permit-type-cell{display:block!important;background:#fff!important}
-.permit-type-cell>.label{display:block;padding:14px 16px;border:0;border-bottom:1px solid #d7dde7;background:#101b2f!important;color:#fff!important;font-size:16px;letter-spacing:.45px;text-transform:uppercase}
+.permit-type-cell>.label{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border:0;border-bottom:1px solid #d7dde7;background:#101b2f!important;color:#fff!important;font-size:16px;letter-spacing:.45px;text-transform:uppercase}.permit-reference{font-size:12px;font-weight:900;letter-spacing:.7px;white-space:nowrap;color:#fff}
 .permit-type-cell>.input-area{display:block;padding:12px 14px}
 .permit-type-group{grid-template-columns:repeat(2,minmax(260px,1fr));gap:10px}
 .permit-type-option{min-height:82px;padding:9px 11px;border:1px solid #d7dde7;border-radius:15px;background:linear-gradient(180deg,#fff,#f8fafc);box-shadow:0 6px 16px rgba(15,23,42,.045)}
@@ -193,7 +194,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
 .pdf-report-title{padding:7px 12px;background:var(--navy);color:#fff;text-align:center;font-size:15px;font-weight:900;letter-spacing:1px}
 
 .pdf-section{margin-top:10px;background:var(--navy);color:#fff;box-shadow:inset 7px 0 0 var(--gold);border:1.5px solid var(--navy);padding:9px 14px;font-size:12px;font-weight:900;letter-spacing:.45px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.pdf-subsection{padding:8px 12px;background:#f2ecdd;color:var(--navy);border:1.5px solid var(--navy);border-top:0;font-size:11px;font-weight:900;letter-spacing:.5px}
+.pdf-subsection{padding:8px 12px;background:#f2ecdd;color:var(--navy);border:1.5px solid var(--navy);border-top:0;font-size:11px;font-weight:900;letter-spacing:.5px;display:flex;align-items:center;justify-content:space-between}.pdf-reference{font-size:9.5px;letter-spacing:.5px}
 
 /* Permit type cards */
 .pdf-permits{display:grid;grid-template-columns:1fr 1fr;gap:8px;border:1.5px solid var(--navy);border-top:0;padding:10px;background:#f8fafc}
@@ -273,6 +274,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
     <button id="primaryWorkflowButton" class="btn-primary" onclick="handlePrimaryAction()">Generate Permit</button>
     <button class="btn-danger clear-action" onclick="clearForm()">Clear All</button>
   </div>
+  <button id="mobileActionsToggle" class="btn-secondary mobile-actions-toggle" type="button" onclick="toggleMobileActions()">Show Actions</button>
 </header>
 <main class="container">
   <div id="workflowNotice" class="notice">Complete and sign the permit before work starts. Generate the Completion HTML and keep that file with the permit; after the work is finished, open it, complete the final section, and generate the final PDF.</div>
@@ -283,7 +285,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
     </div>
     <div id="preCommencementHeading" class="section-title">Section must be completed and signed prior to commencement of work</div>
     <div class="form-grid">
-      <div class="cell full-row permit-type-cell"><div class="label">Work Permit Type *</div><div class="input-area"><div class="permit-type-group" role="group" aria-label="Work Permit Type">
+      <div class="cell full-row permit-type-cell"><div class="label"><span>Work Permit Type *</span><span class="permit-reference">Reference:CAD-OSHMS-009</span></div><div class="input-area"><div class="permit-type-group" role="group" aria-label="Work Permit Type">
         <label class="permit-type-option"><input type="checkbox" id="permitTypeGeneral" data-label="Work Permit Type" value="General Work Permit"><span class="permit-type-copy"><span class="permit-type-name">General Work Permit</span><span class="permit-type-description">Routine maintenance, installation, repair or other general work not covered by a specialist permit.</span></span></label>
         <label class="permit-type-option"><input type="checkbox" id="permitTypeElectrical" data-label="Work Permit Type" value="Electrical Work Permit"><span class="permit-type-copy"><span class="permit-type-name">Electrical Work Permit</span><span class="permit-type-description">Work on electrical systems, distribution boards, circuits, isolation points or energized equipment.</span></span></label>
         <label class="permit-type-option"><input type="checkbox" id="permitTypeHotWork" data-label="Work Permit Type" value="Hot Work"><span class="permit-type-copy"><span class="permit-type-name">Hot Work</span><span class="permit-type-description">Welding, cutting, brazing, soldering, grinding or any activity producing heat, sparks or flame.</span></span></label>
@@ -337,7 +339,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
     </section>
     <div class="signature-grid">
       <section class="signatory-section"><div class="signatory-header">Senior Contractor Representative</div><div class="signatory-fields"><label>Issue Date<input id="issueDate" type="text" placeholder="dd/mmm/yyyy" data-label="Issue Date"></label><div class="signature-field">Signature *<canvas id="contractorSig" class="sign-pad" data-label="Signature of Senior Contractor Representative"></canvas><button type="button" class="btn-secondary btn-small" onclick="clearSignature('contractorSig')">Clear Signature</button></div></div></section>
-      <section class="signatory-section"><div class="signatory-header">Responsible Conrad Team Member</div><div class="signatory-fields"><div class="signatory-identity-row"><label>Name *<input id="responsibleName" placeholder="Print name" data-label="Responsible Conrad Team Member Name" required></label><label>Employee ID *<input id="responsibleId" placeholder="Employee ID" data-label="Responsible Conrad Team Member Employee ID" required></label></div><div class="signature-field">Signature *<canvas id="conradSig" class="sign-pad" data-label="Signature of Responsible Conrad Team Member"></canvas><button type="button" class="btn-secondary btn-small" onclick="clearSignature('conradSig')">Clear Signature</button></div></div></section>
+      <section class="signatory-section"><div class="signatory-header">Responsible Conrad Team Member</div><div class="signatory-fields"><div class="signatory-identity-row"><label>Name *<input id="responsibleName" placeholder="Print name" data-label="Responsible Conrad Team Member Name" required></label><label>Employee ID *<input id="responsibleId" placeholder="Employee ID" data-label="Responsible Conrad Team Member Employee ID" required></label></div><label>Designation *<input id="responsibleDesignation" placeholder="Designation" data-label="Responsible Conrad Team Member Designation" required></label><div class="signature-field">Signature *<canvas id="conradSig" class="sign-pad" data-label="Signature of Responsible Conrad Team Member"></canvas><button type="button" class="btn-secondary btn-small" onclick="clearSignature('conradSig')">Clear Signature</button></div></div></section>
     </div></form>
     <section id="completionPanel" class="completion-panel" aria-label="Section to be completed after work">
       <div class="section-title">Section must be completed and signed after completion of work</div>
@@ -352,6 +354,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
         <div class="completion-details">
           <label>Name of Responsible Conrad Team Member *<input id="completionName" data-label="Completion Responsible Team Member Name"></label>
           <label>Employee ID *<input id="completionId" data-label="Completion Responsible Team Member Employee ID"></label>
+          <label>Designation *<input id="completionDesignation" data-label="Completion Responsible Team Member Designation"></label>
           <label>Completion Date *<input id="completionDate" type="text" placeholder="dd/mmm/yyyy" data-label="Completion Date"></label>
           <label>Signature of Responsible Conrad Team Member *<canvas id="completionSig" class="sign-pad" data-label="Completion Signature"></canvas></label>
           <button type="button" class="btn-secondary btn-small" onclick="clearSignature('completionSig')">Clear Signature</button>
@@ -378,6 +381,7 @@ function clearSignature(id){const c=$(id);if(!c)return;const ctx=c.getContext('2
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
 function showModal(title,html){$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modal').classList.add('show')}
 function closeModal(){$('modal').classList.remove('show')}
+function toggleMobileActions(){const actions=document.querySelector('.actions'),button=$('mobileActionsToggle');actions.classList.toggle('mobile-collapsed');button.textContent=actions.classList.contains('mobile-collapsed')?'Show Actions':'Hide Actions'}
 function fieldValue(id){return ($(id)?.value||'').trim()}
 function yesNo(id){return fieldValue(id)||''}
 function toggleOtherPermitType(){
@@ -389,7 +393,7 @@ function toggleOtherPermitType(){
 }
 function collectData(){
   normalizeDateFields();
-  const ids=['companyName','propertyBuilding','seniorName','seniorId','roomCode','personsNo','personOnSite','personOnSitePhone','assetCode','lpoNo','validTime','validDate','expireTime','expireDate','workDescription','ppeUsed','briefFire','briefPpe','briefHours','briefSecurity','briefAccess','briefSafety','hotWorks','powerSystem','waterSystem','fireProtection','heights','confinedSpaces','responsibleName','responsibleId','issueDate'];
+  const ids=['companyName','propertyBuilding','seniorName','seniorId','roomCode','personsNo','personOnSite','personOnSitePhone','assetCode','lpoNo','validTime','validDate','expireTime','expireDate','workDescription','ppeUsed','briefFire','briefPpe','briefHours','briefSecurity','briefAccess','briefSafety','hotWorks','powerSystem','waterSystem','fireProtection','heights','confinedSpaces','responsibleName','responsibleId','responsibleDesignation','issueDate'];
   const d={};
   ids.forEach(id=>d[id]=fieldValue(id));
   d.safetyRegulationsAck=!!$('safetyRegulationsAck')?.checked;
@@ -404,7 +408,7 @@ function collectData(){
   d.conradSig=signatureState.conradSig?$('conradSig').toDataURL('image/png'):'';
   d.completeSatisfactory=fieldValue('completeSatisfactory');d.completeDocuments=fieldValue('completeDocuments');
   d.completePermits=fieldValue('completePermits');d.completeDebris=fieldValue('completeDebris');
-  d.completionName=fieldValue('completionName');d.completionId=fieldValue('completionId');d.completionDate=fieldValue('completionDate');
+  d.completionName=fieldValue('completionName');d.completionId=fieldValue('completionId');d.completionDesignation=fieldValue('completionDesignation');d.completionDate=fieldValue('completionDate');
   d.completionSig=signatureState.completionSig?$('completionSig').toDataURL('image/png'):'';
   return d;
 }
@@ -421,13 +425,13 @@ function validateForm(){
 }
 function validateCompletion(){
   const missing=[];
-  ['completeSatisfactory','completeDocuments','completePermits','completeDebris','completionName','completionId','completionDate'].forEach(id=>{if(!fieldValue(id))missing.push($(id).dataset.label||id)});
+  ['completeSatisfactory','completeDocuments','completePermits','completeDebris','completionName','completionId','completionDesignation','completionDate'].forEach(id=>{if(!fieldValue(id))missing.push($(id).dataset.label||id)});
   if(!signatureState.completionSig)missing.push('Signature of Responsible Conrad Team Member');
   return missing;
 }
 function restoreSignature(id,src){if(!src||!$(id))return;const img=new Image();img.onload=()=>{const c=$(id),r=c.getBoundingClientRect(),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,r.width,r.height);signatureState[id]=true};img.src=src}
 function applyData(d){Object.keys(d).forEach(id=>{const el=$(id);if(!el||id.includes('Sig'))return;if(el.type==='checkbox')el.checked=!!d[id];else if('value' in el)el.value=d[id]||''});['contractorSig','conradSig','completionSig'].forEach(id=>restoreSignature(id,d[id]));toggleOtherPermitType()}
-function enterReviewMode(d){reviewMode=true;document.body.classList.add('review-mode');$('completionPanel').classList.add('active');setCanvasSize($('completionSig'));applyData(d);normalizeDateFields();$('primaryWorkflowButton').textContent='Generate Final PDF';$('workflowSubtitle').textContent='Issued permit review and post-work completion';$('workflowNotice').innerHTML='<b>Controlled completion copy:</b> all issued permit fields are locked. Complete the post-work section below, then generate the final PDF or HTML File.';document.querySelectorAll('#permitForm input,#permitForm textarea,#permitForm select').forEach(el=>el.disabled=true);if(!$('completionDate').value)$('completionDate').value=today()}
+function enterReviewMode(d){reviewMode=true;document.body.classList.add('review-mode');$('completionPanel').classList.add('active');setCanvasSize($('completionSig'));applyData(d);normalizeDateFields();$('primaryWorkflowButton').textContent='Generate Final PDF';$('workflowSubtitle').textContent='Issued permit review and post-work completion';$('workflowNotice').innerHTML='<b>Controlled completion copy:</b> all issued permit fields are locked. Complete the post-work section below, then generate the final PDF.';document.querySelectorAll('#permitForm input,#permitForm textarea,#permitForm select').forEach(el=>el.disabled=true);if(!$('completionDate').value)$('completionDate').value=today()}
 function enterFinalizedMode(d){document.body.classList.add('finalized-html');document.querySelectorAll('#completionPanel input,#completionPanel select').forEach(el=>el.disabled=true);$('completionSig').style.pointerEvents='none';$('workflowSubtitle').textContent='Finalized permit — read-only and A4 print ready';$('workflowNotice').innerHTML='';$('workflowNotice').style.display='none';buildReport(d)}
 function safeJsonForHtml(d){return JSON.stringify(d).replace(/</g,'\\u003c').replace(/-->/g,'--\\u003e')}
 function downloadEmbeddedHTML(d,filename,message,finalized=false,openAfterDownload=false){
@@ -467,7 +471,7 @@ function buildReport(d){
 const yn=v=>esc(v||'');
 $('reportMount').innerHTML=`
   <section class="pdf-sheet">${pdfHeader()}
-  <div class="pdf-subsection">WORK PERMIT TYPE</div>
+  <div class="pdf-subsection"><span>WORK PERMIT TYPE</span><span class="pdf-reference">Reference:CAD-OSHMS-009</span></div>
   <div class="pdf-permits">${pdfPermitCards(d)}</div>
   <div class="pdf-grid">
     ${pdfCell('Company Name',d.companyName)}${pdfCell('Property Name',d.propertyBuilding)}
@@ -509,7 +513,7 @@ $('reportMount').innerHTML=`
   </div>
   <div class="pdf-sig-grid">
     <div class="pdf-signatory"><div class="pdf-signatory-head">Senior Contractor Representative</div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Issue Date</div><div class="pdf-sig-val">${esc(formatDate(d.issueDate))}</div></div><div class="pdf-signature-label">Signature</div><div class="pdf-signature-large">${sigImg(d.contractorSig)}</div></div>
-    <div class="pdf-signatory"><div class="pdf-signatory-head">Responsible Conrad Team Member</div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Name</div><div class="pdf-sig-val">${esc(d.responsibleName)}</div></div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Employee ID</div><div class="pdf-sig-val">${esc(d.responsibleId)}</div></div><div class="pdf-signature-label">Signature</div><div class="pdf-signature-large">${sigImg(d.conradSig)}</div></div>
+    <div class="pdf-signatory"><div class="pdf-signatory-head">Responsible Conrad Team Member</div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Name</div><div class="pdf-sig-val">${esc(d.responsibleName)}</div></div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Employee ID</div><div class="pdf-sig-val">${esc(d.responsibleId)}</div></div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Designation</div><div class="pdf-sig-val">${esc(d.responsibleDesignation)}</div></div><div class="pdf-signature-label">Signature</div><div class="pdf-signature-large">${sigImg(d.conradSig)}</div></div>
   </div>
   <div class="pdf-section after">SECTION MUST BE COMPLETED AND SIGNED AFTER COMPLETION OF WORK</div>
   <div class="pdf-complete">
@@ -522,6 +526,7 @@ $('reportMount').innerHTML=`
     <div class="pdf-completion-right">
       <div class="pdf-completion-row"><div class="pdf-lab">Name of Responsible Conrad Team Member</div><div class="pdf-val">${esc(d.completionName)}</div></div>
       <div class="pdf-completion-row"><div class="pdf-lab">Employee ID</div><div class="pdf-val">${esc(d.completionId)}</div></div>
+      <div class="pdf-completion-row"><div class="pdf-lab">Designation</div><div class="pdf-val">${esc(d.completionDesignation)}</div></div>
       <div class="pdf-completion-row"><div class="pdf-lab">Completion Date</div><div class="pdf-val">${esc(formatDate(d.completionDate))}</div></div>
       <div class="pdf-completion-sign-label">Signature</div><div class="pdf-completion-sign-box">${d.completionSig?`<img class="pdf-completion-signature" src="${d.completionSig}">`:''}</div>
     </div>
@@ -544,7 +549,7 @@ async function generatePDF(){
     pdf.save(`Permit_to_Work_Report.pdf`);toast('PDF report generated');
   }catch(e){console.error(e);showModal('PDF Fallback',`<p>The direct PDF library is not available in this browser. Please use the browser print option and choose <b>Save as PDF</b>.</p>`);window.print();}
 }
-window.addEventListener('load',()=>{initDates();initSignatures();['validDate','expireDate','issueDate','completionDate'].forEach(id=>$(id)?.addEventListener('blur',normalizeDateFields));const raw=$('embeddedPermitData')?.textContent.trim();if(raw){try{const d=JSON.parse(raw);enterReviewMode(d);if(document.body.dataset.finalized==='true')enterFinalizedMode(d)}catch(e){console.error('Unable to load embedded permit data',e)}}});
+window.addEventListener('load',()=>{initDates();initSignatures();if(window.innerWidth<=900)document.querySelector('.actions')?.classList.add('mobile-collapsed');['validDate','expireDate','issueDate','completionDate'].forEach(id=>$(id)?.addEventListener('blur',normalizeDateFields));const raw=$('embeddedPermitData')?.textContent.trim();if(raw){try{const d=JSON.parse(raw);enterReviewMode(d);if(document.body.dataset.finalized==='true')enterFinalizedMode(d)}catch(e){console.error('Unable to load embedded permit data',e)}}});
 window.addEventListener('resize',()=>{clearTimeout(window._rs);window._rs=setTimeout(()=>document.querySelectorAll('.sign-pad').forEach(setCanvasSize),250)});
 </script>
 </body>
