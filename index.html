@@ -295,7 +295,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
       </div></div></div>
       <div class="cell"><div class="label">Company Name *</div><div class="input-area"><input id="companyName" data-label="Company Name" required /></div></div>
       <div class="cell"><div class="label">Property Name *</div><div class="input-area"><input id="propertyBuilding" data-label="Property Name" value="Conrad Abu Dhabi Etihad Towers" readonly required /></div></div>
-      <div class="cell"><div class="label">Name of Senior Company Person | Employee ID *</div><div class="input-area"><div class="inline-two"><input id="seniorName" placeholder="Print name clearly" data-label="Senior Company Person Name" required /><input id="seniorId" placeholder="Employee ID" data-label="Senior Company Person Employee ID" required /></div></div></div>
+      <div class="cell"><div class="label">Name of Senior Company Person | EID Number *</div><div class="input-area"><div class="inline-two"><input id="seniorName" placeholder="Print name clearly" data-label="Senior Company Person Name" required /><input id="seniorId" placeholder="Employee ID" data-label="Senior Company Person Employee ID" required /></div></div></div>
       <div class="cell"><div class="label">Place of Work *</div><div class="input-area"><input id="roomCode" data-label="Place of Work" required /></div></div>
       <div class="cell"><div class="label">Number of Persons on this Permit *</div><div class="input-area"><input id="personsNo" type="number" min="1" data-label="Number of Persons on this Permit" required /></div></div>
       <div class="cell"><div class="label person-site-label" style="color:#c00000!important">Person On Site & Phone Number *</div><div class="input-area"><div class="inline-two"><input id="personOnSite" placeholder="Print name" data-label="Person On Site" required /><input id="personOnSitePhone" placeholder="Phone Number" data-label="Person On Site Phone Number" required /></div></div></div>
@@ -475,7 +475,7 @@ $('reportMount').innerHTML=`
   <div class="pdf-permits">${pdfPermitCards(d)}</div>
   <div class="pdf-grid">
     ${pdfCell('Company Name',d.companyName)}${pdfCell('Property Name',d.propertyBuilding)}
-    ${pdfCell('Name of Senior Company Person | Employee ID',`${d.seniorName} | ${d.seniorId}`)}${pdfCell('Place of Work',d.roomCode)}
+    ${pdfCell('Name of Senior Company Person | EID Number',`${d.seniorName} | ${d.seniorId}`)}${pdfCell('Place of Work',d.roomCode)}
     ${pdfCell('Number of Persons on this Permit',d.personsNo)}${pdfCell('Person On Site & Phone Number',`${d.personOnSite} / ${d.personOnSitePhone}`)}
     ${pdfCell('Asset Code if Applicable',d.assetCode)}${pdfCell('LPO Number',d.lpoNo)}
     ${pdfCell('VALID FROM (Time/Date)',`${d.validTime} / ${formatDate(d.validDate)}`)}${pdfCell('PERMIT EXPIRES (Time/Date)',`${d.expireTime} / ${formatDate(d.expireDate)}`)}
