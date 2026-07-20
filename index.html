@@ -285,7 +285,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
     </div>
     <div id="preCommencementHeading" class="section-title">Section must be completed and signed prior to commencement of work</div>
     <div class="form-grid">
-      <div class="cell full-row permit-type-cell"><div class="label"><span>Work Permit Type *</span><span class="permit-reference">Ref:CAD-OSHMS-009 - Rev:03</span></div><div class="input-area"><div class="permit-type-group" role="group" aria-label="Work Permit Type">
+      <div class="cell full-row permit-type-cell"><div class="label"><span>Work Permit Type *</span><span class="permit-reference">REF:CAD-OSHMS-009-REV:03</span></div><div class="input-area"><div class="permit-type-group" role="group" aria-label="Work Permit Type">
         <label class="permit-type-option"><input type="checkbox" id="permitTypeGeneral" data-label="Work Permit Type" value="General Work Permit"><span class="permit-type-copy"><span class="permit-type-name">General Work Permit</span><span class="permit-type-description">Routine maintenance, installation, repair or other general work not covered by a specialist permit.</span></span></label>
         <label class="permit-type-option"><input type="checkbox" id="permitTypeElectrical" data-label="Work Permit Type" value="Electrical Work Permit"><span class="permit-type-copy"><span class="permit-type-name">Electrical Work Permit</span><span class="permit-type-description">Work on electrical systems, distribution boards, circuits, isolation points or energized equipment.</span></span></label>
         <label class="permit-type-option"><input type="checkbox" id="permitTypeHotWork" data-label="Work Permit Type" value="Hot Work"><span class="permit-type-copy"><span class="permit-type-name">Hot Work</span><span class="permit-type-description">Welding, cutting, brazing, soldering, grinding or any activity producing heat, sparks or flame.</span></span></label>
@@ -295,7 +295,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
       </div></div></div>
       <div class="cell"><div class="label">Company Name *</div><div class="input-area"><input id="companyName" data-label="Company Name" required /></div></div>
       <div class="cell"><div class="label">Property Name *</div><div class="input-area"><input id="propertyBuilding" data-label="Property Name" value="Conrad Abu Dhabi Etihad Towers" readonly required /></div></div>
-      <div class="cell"><div class="label">Name of Senior Company Person | EID Number *</div><div class="input-area"><div class="inline-two"><input id="seniorName" placeholder="Print name clearly" data-label="Senior Company Person Name" required /><input id="seniorId" placeholder="Employee ID" data-label="Senior Company Person Employee ID" required /></div></div></div>
+      <div class="cell"><div class="label">Name of Senior Company Person | Emirates ID# *</div><div class="input-area"><div class="inline-two"><input id="seniorName" placeholder="Print name clearly" data-label="Senior Company Person Name" required /><input id="seniorId" placeholder="Emirates ID or Passport" data-label="Senior Company Person Emirates ID or Passport" required /></div></div></div>
       <div class="cell"><div class="label">Place of Work *</div><div class="input-area"><input id="roomCode" data-label="Place of Work" required /></div></div>
       <div class="cell"><div class="label">Number of Persons on this Permit *</div><div class="input-area"><input id="personsNo" type="number" min="1" data-label="Number of Persons on this Permit" required /></div></div>
       <div class="cell"><div class="label person-site-label" style="color:#c00000!important">Person On Site & Phone Number *</div><div class="input-area"><div class="inline-two"><input id="personOnSite" placeholder="Print name" data-label="Person On Site" required /><input id="personOnSitePhone" placeholder="Phone Number" data-label="Person On Site Phone Number" required /></div></div></div>
@@ -471,11 +471,11 @@ function buildReport(d){
 const yn=v=>esc(v||'');
 $('reportMount').innerHTML=`
   <section class="pdf-sheet">${pdfHeader()}
-  <div class="pdf-subsection"><span>WORK PERMIT TYPE</span><span class="pdf-reference">Ref:CAD-OSHMS-009 - Rev:03</span></div>
+  <div class="pdf-subsection"><span>WORK PERMIT TYPE</span><span class="pdf-reference">REF:CAD-OSHMS-009-REV:03</span></div>
   <div class="pdf-permits">${pdfPermitCards(d)}</div>
   <div class="pdf-grid">
     ${pdfCell('Company Name',d.companyName)}${pdfCell('Property Name',d.propertyBuilding)}
-    ${pdfCell('Name of Senior Company Person | EID Number',`${d.seniorName} | ${d.seniorId}`)}${pdfCell('Place of Work',d.roomCode)}
+    ${pdfCell('Name of Senior Company Person | Emirates ID#',`${d.seniorName} | ${d.seniorId}`)}${pdfCell('Place of Work',d.roomCode)}
     ${pdfCell('Number of Persons on this Permit',d.personsNo)}${pdfCell('Person On Site & Phone Number',`${d.personOnSite} / ${d.personOnSitePhone}`)}
     ${pdfCell('Asset Code if Applicable',d.assetCode)}${pdfCell('LPO Number',d.lpoNo)}
     ${pdfCell('VALID FROM (Time/Date)',`${d.validTime} / ${formatDate(d.validDate)}`)}${pdfCell('PERMIT EXPIRES (Time/Date)',`${d.expireTime} / ${formatDate(d.expireDate)}`)}
