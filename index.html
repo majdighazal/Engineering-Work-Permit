@@ -77,7 +77,7 @@ button:hover{transform:translateY(-1px);filter:brightness(.97)}
 .input-area,.block-control,.sig-content{padding:7px;background:#fff;display:flex;gap:7px;align-items:center;min-width:0;border-color:var(--line)}
 input,select,textarea{width:100%;border:1px solid #cfd9e6;border-radius:16px;padding:10px 11px;font-size:14px;background:#fff;color:var(--ink);outline:none;font-family:Arial,Helvetica,sans-serif;line-height:1.45}
 input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(208,170,91,.22)}
-textarea{min-height:105px;resize:vertical}.description-wrap{border-bottom:2px solid var(--line);padding:12px;background:#fff}.description-wrap label{display:block;text-align:center;font-weight:900;margin-bottom:8px;color:var(--navy)}
+textarea{min-height:105px;resize:none;overflow-y:hidden}.description-wrap{border-bottom:2px solid var(--line);padding:12px;background:#fff}.description-wrap label{display:block;text-align:center;font-weight:900;margin-bottom:8px;color:var(--navy)}
 .inline-two{display:grid;grid-template-columns:1fr 1fr;gap:7px;width:100%}.inline-three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;width:100%}
 .block-table{border-bottom:2px solid var(--line)}.block-header,.block-row{display:grid;grid-template-columns:minmax(0,1fr) 140px minmax(0,1fr) 140px;border-bottom:1px solid var(--line)}.block-header{background:var(--navy);color:#fff;font-weight:900;text-align:center;text-transform:uppercase;font-size:12px;letter-spacing:.25px}.block-header div{padding:9px 8px;border-right:1px solid rgba(255,255,255,.28);display:flex;align-items:center;justify-content:center}.block-header div:last-child{border-right:0}.block-row:last-child{border-bottom:0}.block-control{border-right:1px solid var(--line);justify-content:center}.block-control:last-child{border-right:0}.block-control select{max-width:125px;text-align:center;text-align-last:center;font-weight:900;color:var(--navy);padding-left:26px}.initial-input{max-width:125px;text-align:center;font-weight:900;color:var(--navy)}
 .warning{border-top:2px solid var(--line);border-bottom:2px solid var(--line);padding:13px 16px;text-align:center;color:#7b1f1f;font-weight:900;line-height:1.3;background:var(--gold-soft)}
@@ -177,7 +177,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
 .permit-type-option:has(input:checked){border-color:#b9985a;background:#fff8e8!important;box-shadow:inset 4px 0 0 #b9985a,0 8px 18px rgba(16,27,47,.06)}
 .permit-type-other-input{margin-top:10px;background:#fff}
 .regulation-critical{color:#a32118!important}
-.field-section{border-bottom:1px solid #d7dde7;background:#fff}.field-section-header{padding:13px 16px;background:#101b2f;color:#fff;border-left:7px solid #b9985a;font-size:15px;font-weight:900;letter-spacing:.35px;text-transform:uppercase}.field-section-tray{padding:12px 14px;background:#fff}.field-section-tray textarea{min-height:112px}
+.field-section{border-bottom:1px solid #d7dde7;background:#fff}.field-section-header{padding:13px 16px;background:#101b2f;color:#fff;border-left:7px solid #b9985a;font-size:15px;font-weight:900;letter-spacing:.35px;text-transform:uppercase}.field-section-tray{padding:12px 14px;background:#fff}.field-section-tray textarea{min-height:112px;height:auto;overflow-y:hidden;resize:none;transition:height .12s ease}
 @media(max-width:620px){.permit-type-group{grid-template-columns:1fr}.permit-type-option{min-height:auto}}
 
 /* =========================================================
@@ -285,7 +285,7 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
     </div>
     <div id="preCommencementHeading" class="section-title">Section must be completed and signed prior to commencement of work</div>
     <div class="form-grid">
-      <div class="cell full-row permit-type-cell"><div class="label"><span>Work Permit Type *</span><span class="permit-reference">REF:CAD-OSHMS-009-REV:03</span></div><div class="input-area"><div class="permit-type-group" role="group" aria-label="Work Permit Type">
+      <div class="cell full-row permit-type-cell"><div class="label"><span>Work Permit Type *</span><span class="permit-reference">CAD-OSHMS-009</span></div><div class="input-area"><div class="permit-type-group" role="group" aria-label="Work Permit Type">
         <label class="permit-type-option"><input type="checkbox" id="permitTypeGeneral" data-label="Work Permit Type" value="General Work Permit"><span class="permit-type-copy"><span class="permit-type-name">General Work Permit</span><span class="permit-type-description">Routine maintenance, installation, repair or other general work not covered by a specialist permit.</span></span></label>
         <label class="permit-type-option"><input type="checkbox" id="permitTypeElectrical" data-label="Work Permit Type" value="Electrical Work Permit"><span class="permit-type-copy"><span class="permit-type-name">Electrical Work Permit</span><span class="permit-type-description">Work on electrical systems, distribution boards, circuits, isolation points or energized equipment.</span></span></label>
         <label class="permit-type-option"><input type="checkbox" id="permitTypeHotWork" data-label="Work Permit Type" value="Hot Work"><span class="permit-type-copy"><span class="permit-type-name">Hot Work</span><span class="permit-type-description">Welding, cutting, brazing, soldering, grinding or any activity producing heat, sparks or flame.</span></span></label>
@@ -382,6 +382,8 @@ function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show')
 function showModal(title,html){$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modal').classList.add('show')}
 function closeModal(){$('modal').classList.remove('show')}
 function toggleMobileActions(){const actions=document.querySelector('.actions'),button=$('mobileActionsToggle');actions.classList.toggle('mobile-collapsed');button.textContent=actions.classList.contains('mobile-collapsed')?'Show Actions':'Hide Actions'}
+function autoResizeTextarea(el){if(!el)return;el.style.height='auto';el.style.height=Math.max(112,el.scrollHeight+2)+'px'}
+function resizeLongTextFields(){['workDescription','ppeUsed'].forEach(id=>autoResizeTextarea($(id)))}
 function fieldValue(id){return ($(id)?.value||'').trim()}
 function yesNo(id){return fieldValue(id)||''}
 function toggleOtherPermitType(){
@@ -430,7 +432,7 @@ function validateCompletion(){
   return missing;
 }
 function restoreSignature(id,src){if(!src||!$(id))return;const img=new Image();img.onload=()=>{const c=$(id),r=c.getBoundingClientRect(),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,r.width,r.height);signatureState[id]=true};img.src=src}
-function applyData(d){Object.keys(d).forEach(id=>{const el=$(id);if(!el||id.includes('Sig'))return;if(el.type==='checkbox')el.checked=!!d[id];else if('value' in el)el.value=d[id]||''});['contractorSig','conradSig','completionSig'].forEach(id=>restoreSignature(id,d[id]));toggleOtherPermitType()}
+function applyData(d){Object.keys(d).forEach(id=>{const el=$(id);if(!el||id.includes('Sig'))return;if(el.type==='checkbox')el.checked=!!d[id];else if('value' in el)el.value=d[id]||''});['contractorSig','conradSig','completionSig'].forEach(id=>restoreSignature(id,d[id]));toggleOtherPermitType();requestAnimationFrame(resizeLongTextFields)}
 function enterReviewMode(d){reviewMode=true;document.body.classList.add('review-mode');$('completionPanel').classList.add('active');setCanvasSize($('completionSig'));applyData(d);normalizeDateFields();$('primaryWorkflowButton').textContent='Generate Final PDF';$('workflowSubtitle').textContent='Issued permit review and post-work completion';$('workflowNotice').innerHTML='<b>Controlled completion copy:</b> all issued permit fields are locked. Complete the post-work section below, then generate the final PDF.';document.querySelectorAll('#permitForm input,#permitForm textarea,#permitForm select').forEach(el=>el.disabled=true);if(!$('completionDate').value)$('completionDate').value=today()}
 function enterFinalizedMode(d){document.body.classList.add('finalized-html');document.querySelectorAll('#completionPanel input,#completionPanel select').forEach(el=>el.disabled=true);$('completionSig').style.pointerEvents='none';$('workflowSubtitle').textContent='Finalized permit — read-only and A4 print ready';$('workflowNotice').innerHTML='';$('workflowNotice').style.display='none';buildReport(d)}
 function safeJsonForHtml(d){return JSON.stringify(d).replace(/</g,'\\u003c').replace(/-->/g,'--\\u003e')}
@@ -448,8 +450,8 @@ function generateCompletionHTML(){
 function saveCompletedHTML(){const missing=validateCompletion();if(missing.length){showModal('Completion Information Missing',`<p>Complete every item before saving the finalized HTML:</p><div class="missing-list">${missing.map(x=>'• '+esc(x)).join('<br>')}</div>`);return}const stamp=new Date().toISOString().slice(0,10);downloadEmbeddedHTML(collectData(),`Permit_to_Work_Final_${stamp}.html`,'Final read-only HTML saved',true)}
 function handlePrimaryAction(){reviewMode?generatePDF():generateCompletionHTML()}
 function saveDraft(){const d=collectData();localStorage.setItem('generalPermitDraft',JSON.stringify(d));toast('Draft saved successfully')}
-function loadDraft(){const raw=localStorage.getItem('generalPermitDraft');if(!raw){toast('No saved draft found');return}const d=JSON.parse(raw);Object.keys(d).forEach(id=>{if(!$(id)||id.includes('Sig'))return;if($(id).type==='checkbox')$(id).checked=!!d[id];else $(id).value=d[id]||''});['contractorSig','conradSig'].forEach(id=>{if(d[id]&&$(id)){const img=new Image();img.onload=()=>{const c=$(id);const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,c.getBoundingClientRect().width,c.getBoundingClientRect().height);signatureState[id]=true};img.src=d[id];}});toggleOtherPermitType();toast('Draft loaded')}
-function clearForm(){if(!confirm('Clear all permit information?'))return;$('permitForm').reset();Object.keys(signatureState).forEach(clearSignature);$('propertyBuilding').value='Conrad Abu Dhabi Etihad Towers';toggleOtherPermitType();initDates();toast('Form cleared')}
+function loadDraft(){const raw=localStorage.getItem('generalPermitDraft');if(!raw){toast('No saved draft found');return}const d=JSON.parse(raw);Object.keys(d).forEach(id=>{if(!$(id)||id.includes('Sig'))return;if($(id).type==='checkbox')$(id).checked=!!d[id];else $(id).value=d[id]||''});['contractorSig','conradSig'].forEach(id=>{if(d[id]&&$(id)){const img=new Image();img.onload=()=>{const c=$(id);const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,c.getBoundingClientRect().width,c.getBoundingClientRect().height);signatureState[id]=true};img.src=d[id];}});toggleOtherPermitType();resizeLongTextFields();toast('Draft loaded')}
+function clearForm(){if(!confirm('Clear all permit information?'))return;$('permitForm').reset();Object.keys(signatureState).forEach(clearSignature);$('propertyBuilding').value='Conrad Abu Dhabi Etihad Towers';toggleOtherPermitType();initDates();resizeLongTextFields();toast('Form cleared')}
 function esc(v){return (v||'').replace(/[&<>]/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[s]))}
 function sigImg(src){return src?`<img class="pdf-sign-img" src="${src}">`:'<div class="pdf-sign-line"></div>'}
 function pdfCell(label,value){return `<div class="pdf-cell"><div class="pdf-lab">${label}</div><div class="pdf-val">${esc(value)}</div></div>`}
@@ -471,7 +473,7 @@ function buildReport(d){
 const yn=v=>esc(v||'');
 $('reportMount').innerHTML=`
   <section class="pdf-sheet">${pdfHeader()}
-  <div class="pdf-subsection"><span>WORK PERMIT TYPE</span><span class="pdf-reference">REF:CAD-OSHMS-009-REV:03</span></div>
+  <div class="pdf-subsection"><span>WORK PERMIT TYPE</span><span class="pdf-reference">CAD-OSHMS-009</span></div>
   <div class="pdf-permits">${pdfPermitCards(d)}</div>
   <div class="pdf-grid">
     ${pdfCell('Company Name',d.companyName)}${pdfCell('Property Name',d.propertyBuilding)}
@@ -549,8 +551,8 @@ async function generatePDF(){
     pdf.save(`Permit_to_Work_Report.pdf`);toast('PDF report generated');
   }catch(e){console.error(e);showModal('PDF Fallback',`<p>The direct PDF library is not available in this browser. Please use the browser print option and choose <b>Save as PDF</b>.</p>`);window.print();}
 }
-window.addEventListener('load',()=>{initDates();initSignatures();if(window.innerWidth<=900)document.querySelector('.actions')?.classList.add('mobile-collapsed');['validDate','expireDate','issueDate','completionDate'].forEach(id=>$(id)?.addEventListener('blur',normalizeDateFields));const raw=$('embeddedPermitData')?.textContent.trim();if(raw){try{const d=JSON.parse(raw);enterReviewMode(d);if(document.body.dataset.finalized==='true')enterFinalizedMode(d)}catch(e){console.error('Unable to load embedded permit data',e)}}});
-window.addEventListener('resize',()=>{clearTimeout(window._rs);window._rs=setTimeout(()=>document.querySelectorAll('.sign-pad').forEach(setCanvasSize),250)});
+window.addEventListener('load',()=>{initDates();initSignatures();['workDescription','ppeUsed'].forEach(id=>{$(id)?.addEventListener('input',e=>autoResizeTextarea(e.target));autoResizeTextarea($(id))});if(window.innerWidth<=900)document.querySelector('.actions')?.classList.add('mobile-collapsed');['validDate','expireDate','issueDate','completionDate'].forEach(id=>$(id)?.addEventListener('blur',normalizeDateFields));const raw=$('embeddedPermitData')?.textContent.trim();if(raw){try{const d=JSON.parse(raw);enterReviewMode(d);if(document.body.dataset.finalized==='true')enterFinalizedMode(d)}catch(e){console.error('Unable to load embedded permit data',e)}}});
+window.addEventListener('resize',()=>{clearTimeout(window._rs);window._rs=setTimeout(()=>{document.querySelectorAll('.sign-pad').forEach(setCanvasSize);resizeLongTextFields()},250)});
 </script>
 </body>
 </html>
