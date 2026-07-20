@@ -447,7 +447,8 @@ function downloadEmbeddedHTML(d,filename,message,finalized=false,openAfterDownlo
 }
 function generateCompletionHTML(){
   const missing=validateForm();if(missing.length){showModal('Required Information Missing',`<p>Please complete the following before issuing the permit:</p><div class="missing-list">${missing.map(x=>'• '+esc(x)).join('<br>')}</div>`);return}
-  const stamp=new Date().toISOString().slice(0,10);downloadEmbeddedHTML(collectData(),`Permit_to_Work_${stamp}.html`,'Permit generated and opened',false,true);
+  const stamp=new Date().toISOString().slice(0,10),openOnDesktop=window.innerWidth>1024&&!window.matchMedia('(pointer:coarse)').matches;
+  downloadEmbeddedHTML(collectData(),`Permit_to_Work_${stamp}.html`,openOnDesktop?'Permit generated and opened':'Permit downloaded',false,openOnDesktop);
 }
 function saveCompletedHTML(){const missing=validateCompletion();if(missing.length){showModal('Completion Information Missing',`<p>Complete every item before saving the finalized HTML:</p><div class="missing-list">${missing.map(x=>'• '+esc(x)).join('<br>')}</div>`);return}const stamp=new Date().toISOString().slice(0,10);downloadEmbeddedHTML(collectData(),`Permit_to_Work_Final_${stamp}.html`,'Final read-only HTML saved',true)}
 function handlePrimaryAction(){reviewMode?generatePDF():generateCompletionHTML()}
