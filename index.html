@@ -441,6 +441,10 @@ function enterFinalizedMode(d){document.body.classList.add('finalized-html');doc
 function safeJsonForHtml(d){return JSON.stringify(d).replace(/</g,'\\u003c').replace(/-->/g,'--\\u003e')}
 function downloadEmbeddedHTML(d,filename,message,finalized=false,openAfterDownload=false){
   const clone=document.documentElement.cloneNode(true),dataNode=clone.querySelector('#embeddedPermitData');dataNode.textContent=safeJsonForHtml(d);
+  clone.querySelector('body').dataset.generatedPermit='true';
+  clone.querySelectorAll('#permitForm input,#permitForm textarea,#permitForm select').forEach(el=>{el.disabled=true;el.setAttribute('disabled','disabled');el.setAttribute('aria-readonly','true')});
+  clone.querySelectorAll('#permitForm .sign-pad').forEach(el=>{el.style.pointerEvents='none';el.setAttribute('aria-readonly','true')});
+  clone.querySelectorAll('#permitForm button').forEach(el=>{el.disabled=true;el.style.display='none'});
   if(finalized){clone.querySelector('body').dataset.finalized='true';clone.querySelector('body').classList.add('finalized-html')}else{delete clone.querySelector('body').dataset.finalized;clone.querySelector('body').classList.remove('finalized-html')}
   clone.querySelector('#reportMount').innerHTML='';clone.querySelector('#modal').classList.remove('show');clone.querySelector('#toast').classList.remove('show');
   const html='<!DOCTYPE html>\n'+clone.outerHTML,blob=new Blob([html],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
