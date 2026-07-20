@@ -371,15 +371,16 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
 <script>
 const $=id=>document.getElementById(id);
 const signatureState={contractorSig:false,conradSig:false,completionSig:false};
+const embeddedSignatureData={contractorSig:'',conradSig:'',completionSig:''};
 let reviewMode=false;
 const monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function formatDate(value){if(!value)return '';const v=String(value).trim();let d,m,y;let x=v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);if(x){y=+x[1];m=+x[2];d=+x[3]}else{x=v.match(/^(\d{1,2})[\/-]([A-Za-z]{3}|\d{1,2})[\/-](\d{4})$/);if(!x)return v;d=+x[1];y=+x[3];m=/^\d+$/.test(x[2])?+x[2]:monthNames.findIndex(n=>n.toLowerCase()===x[2].toLowerCase())+1}if(!d||m<1||m>12||y<1900)return v;return `${String(d).padStart(2,'0')}/${monthNames[m-1]}/${y}`}
 function today(){const d=new Date();return `${String(d.getDate()).padStart(2,'0')}/${monthNames[d.getMonth()]}/${d.getFullYear()}`}
 function normalizeDateFields(){['validDate','expireDate','issueDate','completionDate'].forEach(id=>{if($(id)&&$(id).value)$(id).value=formatDate($(id).value)})}
 function initDates(){['validDate','expireDate','issueDate'].forEach(id=>{if($(id)&&!$(id).value)$(id).value=today()})}
-function setCanvasSize(canvas){const ratio=Math.max(window.devicePixelRatio||1,1);const rect=canvas.getBoundingClientRect();if(rect.width<10||rect.height<10)return;const old=canvas.toDataURL();canvas.width=rect.width*ratio;canvas.height=rect.height*ratio;canvas.getContext('2d').scale(ratio,ratio);const ctx=canvas.getContext('2d');ctx.lineWidth=2;ctx.lineCap='round';ctx.strokeStyle='#162842';}
+function setCanvasSize(canvas){if(!canvas)return;const ratio=Math.max(window.devicePixelRatio||1,1),rect=canvas.getBoundingClientRect();if(rect.width<10||rect.height<10)return;const preserved=signatureState[canvas.id]?canvas.toDataURL('image/png'):embeddedSignatureData[canvas.id]||'';canvas.width=rect.width*ratio;canvas.height=rect.height*ratio;const ctx=canvas.getContext('2d');ctx.scale(ratio,ratio);ctx.lineWidth=2;ctx.lineCap='round';ctx.strokeStyle='#162842';if(preserved)restoreSignature(canvas.id,preserved)}
 function initSignatures(){document.querySelectorAll('.sign-pad').forEach(canvas=>{setCanvasSize(canvas);let drawing=false,last=null;const pos=e=>{const r=canvas.getBoundingClientRect();const t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top}};const start=e=>{e.preventDefault();drawing=true;last=pos(e)};const move=e=>{if(!drawing)return;e.preventDefault();const p=pos(e);const ctx=canvas.getContext('2d');ctx.beginPath();ctx.moveTo(last.x,last.y);ctx.lineTo(p.x,p.y);ctx.stroke();last=p;signatureState[canvas.id]=true};const end=()=>drawing=false;canvas.addEventListener('mousedown',start);canvas.addEventListener('mousemove',move);window.addEventListener('mouseup',end);canvas.addEventListener('touchstart',start,{passive:false});canvas.addEventListener('touchmove',move,{passive:false});canvas.addEventListener('touchend',end);});}
-function clearSignature(id){const c=$(id);if(!c)return;const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);signatureState[id]=false;toast('Signature cleared')}
+function clearSignature(id){const c=$(id);if(!c)return;const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);signatureState[id]=false;embeddedSignatureData[id]='';toast('Signature cleared')}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
 function showModal(title,html){$('modalTitle').textContent=title;$('modalBody').innerHTML=html;$('modal').classList.add('show')}
 function closeModal(){$('modal').classList.remove('show')}
@@ -408,12 +409,12 @@ function collectData(){
   const selected=permitTypeMap.filter(([id])=>d[id]).map(([,label])=>label);
   if(d.permitTypeOther)selected.push(d.permitTypeOtherText?`Other: ${d.permitTypeOtherText}`:'Other');
   d.permitTypes=selected.join(', ');
-  d.contractorSig=signatureState.contractorSig?$('contractorSig').toDataURL('image/png'):'';
-  d.conradSig=signatureState.conradSig?$('conradSig').toDataURL('image/png'):'';
+  d.contractorSig=signatureState.contractorSig?$('contractorSig').toDataURL('image/png'):embeddedSignatureData.contractorSig;
+  d.conradSig=signatureState.conradSig?$('conradSig').toDataURL('image/png'):embeddedSignatureData.conradSig;
   d.completeSatisfactory=fieldValue('completeSatisfactory');d.completeDocuments=fieldValue('completeDocuments');
   d.completePermits=fieldValue('completePermits');d.completeDebris=fieldValue('completeDebris');
   d.completionName=fieldValue('completionName');d.completionId=fieldValue('completionId');d.completionDesignation=fieldValue('completionDesignation');d.completionDate=fieldValue('completionDate');
-  d.completionSig=signatureState.completionSig?$('completionSig').toDataURL('image/png'):'';
+  d.completionSig=signatureState.completionSig?$('completionSig').toDataURL('image/png'):embeddedSignatureData.completionSig;
   return d;
 }
 function validateForm(){
@@ -433,8 +434,8 @@ function validateCompletion(){
   if(!signatureState.completionSig)missing.push('Signature of Responsible Conrad Team Member');
   return missing;
 }
-function restoreSignature(id,src){if(!src||!$(id))return;const img=new Image();img.onload=()=>{const c=$(id),r=c.getBoundingClientRect(),ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,r.width,r.height);signatureState[id]=true};img.src=src}
-function applyData(d){Object.keys(d).forEach(id=>{const el=$(id);if(!el||id.includes('Sig'))return;if(el.type==='checkbox')el.checked=!!d[id];else if('value' in el)el.value=d[id]||''});['contractorSig','conradSig','completionSig'].forEach(id=>restoreSignature(id,d[id]));toggleOtherPermitType();requestAnimationFrame(resizeLongTextFields)}
+function restoreSignature(id,src){if(!src||!$(id))return;embeddedSignatureData[id]=src;const img=new Image();img.onload=()=>{const c=$(id),r=c.getBoundingClientRect();if(r.width<10||r.height<10)return;const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,r.width,r.height);signatureState[id]=true};img.src=src}
+function applyData(d){Object.keys(d).forEach(id=>{const el=$(id);if(!el||id.includes('Sig'))return;if(el.type==='checkbox')el.checked=!!d[id];else if('value' in el)el.value=d[id]||''});['contractorSig','conradSig','completionSig'].forEach(id=>{embeddedSignatureData[id]=d[id]||'';restoreSignature(id,d[id])});toggleOtherPermitType();requestAnimationFrame(resizeLongTextFields)}
 function enterReviewMode(d){reviewMode=true;document.body.classList.add('review-mode');$('completionPanel').classList.add('active');setCanvasSize($('completionSig'));applyData(d);normalizeDateFields();$('primaryWorkflowButton').textContent='Generate Final PDF';$('workflowSubtitle').textContent='Issued permit review and post-work completion';$('workflowNotice').innerHTML='<b>Controlled completion copy:</b> all issued permit fields are locked. Complete the post-work section below, then generate the final PDF.';document.querySelectorAll('#permitForm input,#permitForm textarea,#permitForm select').forEach(el=>el.disabled=true);if(!$('completionDate').value)$('completionDate').value=today()}
 function enterFinalizedMode(d){document.body.classList.add('finalized-html');document.querySelectorAll('#completionPanel input,#completionPanel select').forEach(el=>el.disabled=true);$('completionSig').style.pointerEvents='none';$('workflowSubtitle').textContent='Finalized permit — read-only and A4 print ready';$('workflowNotice').innerHTML='';$('workflowNotice').style.display='none';buildReport(d)}
 function safeJsonForHtml(d){return JSON.stringify(d).replace(/</g,'\\u003c').replace(/-->/g,'--\\u003e')}
@@ -443,12 +444,12 @@ function downloadEmbeddedHTML(d,filename,message,finalized=false,openAfterDownlo
   if(finalized){clone.querySelector('body').dataset.finalized='true';clone.querySelector('body').classList.add('finalized-html')}else{delete clone.querySelector('body').dataset.finalized;clone.querySelector('body').classList.remove('finalized-html')}
   clone.querySelector('#reportMount').innerHTML='';clone.querySelector('#modal').classList.remove('show');clone.querySelector('#toast').classList.remove('show');
   const html='<!DOCTYPE html>\n'+clone.outerHTML,blob=new Blob([html],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
-  a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();if(openAfterDownload)window.open(url,'_blank','noopener');setTimeout(()=>URL.revokeObjectURL(url),60000);toast(message);
+  a.href=url;a.download=filename;a.setAttribute('download',filename);a.style.display='none';a.rel='noopener';document.body.appendChild(a);a.click();a.remove();if(openAfterDownload)window.open(url,'_blank','noopener');setTimeout(()=>URL.revokeObjectURL(url),60000);toast(message);
 }
 function generateCompletionHTML(){
   const missing=validateForm();if(missing.length){showModal('Required Information Missing',`<p>Please complete the following before issuing the permit:</p><div class="missing-list">${missing.map(x=>'• '+esc(x)).join('<br>')}</div>`);return}
   const stamp=new Date().toISOString().slice(0,10),openOnDesktop=window.innerWidth>1024&&!window.matchMedia('(pointer:coarse)').matches;
-  downloadEmbeddedHTML(collectData(),`Permit_to_Work_${stamp}.html`,openOnDesktop?'Permit generated and opened':'Permit downloaded',false,openOnDesktop);
+  downloadEmbeddedHTML(collectData(),`Permit_to_Work_${stamp}.html`,openOnDesktop?'Permit generated and opened':'Permit HTML saved to device Downloads',false,openOnDesktop);
 }
 function saveCompletedHTML(){const missing=validateCompletion();if(missing.length){showModal('Completion Information Missing',`<p>Complete every item before saving the finalized HTML:</p><div class="missing-list">${missing.map(x=>'• '+esc(x)).join('<br>')}</div>`);return}const stamp=new Date().toISOString().slice(0,10);downloadEmbeddedHTML(collectData(),`Permit_to_Work_Final_${stamp}.html`,'Final read-only HTML saved',true)}
 function handlePrimaryAction(){reviewMode?generatePDF():generateCompletionHTML()}
