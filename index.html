@@ -275,6 +275,13 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
 
 .pdf-footer{position:absolute;left:18px;right:18px;bottom:10px;border-top:1px solid var(--gold);padding-top:5px;display:flex;justify-content:space-between;color:#596577;font-size:8px;font-weight:700}
 
+/* Keep all seven calendar columns inside the popup on every viewport. */
+.date-calendar{max-width:calc(100vw - 20px)}
+.date-calendar-head{grid-template-columns:44px minmax(0,1fr) 44px}
+.date-calendar-week,.date-calendar-days{width:100%;grid-template-columns:repeat(7,minmax(0,1fr));overflow:hidden}
+.date-calendar-week>*,.date-calendar-days>*{width:100%;min-width:0;max-width:100%;overflow:hidden}
+.date-day{width:100%;min-width:0;max-width:100%;padding:0;margin:0}
+@media(min-width:601px){.date-calendar{width:min(320px,calc(100vw - 24px))}}
 </style>
 </head>
 <body>
@@ -407,7 +414,7 @@ function setSelectedTime(){if(!activeTimeField)return;activeTimeField.value=`${S
 let activeDateField=null,calendarView=new Date();
 function calendarISO(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
 function positionDateCalendar(){const pop=$('dateCalendar');if(!pop?.classList.contains('show')||!activeDateField)return;const r=activeDateField.getBoundingClientRect(),gap=7,w=pop.offsetWidth,h=pop.offsetHeight;let left=Math.min(Math.max(8,r.left),window.innerWidth-w-8),top=r.bottom+gap;if(top+h>window.innerHeight-8)top=Math.max(8,r.top-h-gap);pop.style.left=left+'px';pop.style.top=top+'px'}
-function renderDateCalendar(){const selected=displayDateToISO(activeDateField?.value||''),y=calendarView.getFullYear(),m=calendarView.getMonth(),first=new Date(y,m,1),start=new Date(y,m,1-first.getDay()),now=new Date();$('calendarTitle').textContent=`${monthNames[m]} ${y}`;$('calendarDays').innerHTML=Array.from({length:42},(_,i)=>{const d=new Date(start);d.setDate(start.getDate()+i);const iso=calendarISO(d),classes=['date-day'];if(d.getMonth()!==m)classes.push('outside');if(iso===calendarISO(now))classes.push('today');if(iso===selected)classes.push('selected');return `<button type="button" class="${classes.join(' ')}" data-date="${iso}">${d.getDate()}</button>`}).join('');requestAnimationFrame(positionDateCalendar)}
+function renderDateCalendar(){const selected=displayDateToISO(activeDateField?.value||''),y=calendarView.getFullYear(),m=calendarView.getMonth(),first=new Date(y,m,1),start=new Date(y,m,1-first.getDay()),now=new Date(),days=$('calendarDays');$('calendarTitle').textContent=`${monthNames[m]} ${y}`;days.style.cssText='display:grid;grid-template-columns:repeat(7,minmax(0,1fr));width:100%;max-width:100%;overflow:hidden;box-sizing:border-box';days.innerHTML=Array.from({length:42},(_,i)=>{const d=new Date(start);d.setDate(start.getDate()+i);const iso=calendarISO(d),classes=['date-day'];if(d.getMonth()!==m)classes.push('outside');if(iso===calendarISO(now))classes.push('today');if(iso===selected)classes.push('selected');return `<button type="button" class="${classes.join(' ')}" data-date="${iso}" style="width:100%;min-width:0;max-width:100%;padding:0;margin:0;box-sizing:border-box;overflow:hidden">${d.getDate()}</button>`}).join('');requestAnimationFrame(positionDateCalendar)}
 function openDateCalendar(field){if(!field||field.disabled)return;closeTimePicker();activeDateField?.classList.remove('date-picker-open');activeDateField=field;field.classList.add('date-picker-open');const iso=displayDateToISO(field.value),parts=iso.split('-').map(Number);calendarView=parts.length===3&&parts.every(Boolean)?new Date(parts[0],parts[1]-1,1):new Date(new Date().getFullYear(),new Date().getMonth(),1);$('dateCalendar').classList.add('show');renderDateCalendar()}
 function closeDateCalendar(){activeDateField?.classList.remove('date-picker-open');activeDateField=null;$('dateCalendar')?.classList.remove('show')}
 function chooseCalendarDate(iso){if(!activeDateField)return;activeDateField.value=formatDate(iso);activeDateField.classList.remove('field-missing');activeDateField.dispatchEvent(new Event('change',{bubbles:true}));closeDateCalendar()}
@@ -477,7 +484,7 @@ function normalizeCloneToEnglish(clone){clone.querySelectorAll('[data-en-text]')
 let activePredictionField=null;
 const predictionRequests={};
 function isMobilePredictionView(){return window.matchMedia('(max-width:600px)').matches}
-function predictionEnabled(){return document.body.dataset.generatedPermit!=='true'&&(isMobilePredictionView()||$('autoPredictionToggle')?.checked===true)}
+function predictionEnabled(){return document.body.dataset.generatedPermit!=='true'&&!isMobilePredictionView()&&$('autoPredictionToggle')?.checked===true}
 function getPredictionWordInfo(field){const caret=field.selectionStart??field.value.length,text=field.value;let start=caret,end=caret;while(start>0&&/[A-Za-z]/.test(text[start-1]))start--;while(end<text.length&&/[A-Za-z]/.test(text[end]))end++;return{start,end,prefix:text.slice(start,caret),word:text.slice(start,end)}}
 function hidePredictions(exceptId=''){document.querySelectorAll('.prediction-strip').forEach(el=>{if(el.id!==exceptId){el.classList.remove('active');el.querySelector('.prediction-words').replaceChildren()}})}
 async function updatePrediction(field){
@@ -517,7 +524,7 @@ function setupAutoPrediction(){
     field.addEventListener('keydown',e=>{if(e.key==='Tab'&&strip.classList.contains('active')){e.preventDefault();acceptPrediction(field)}});
   });
   document.addEventListener('pointerdown',e=>{if(!e.target.closest('.prediction-strip')&&!['workDescription','ppeUsed'].includes(e.target.id)){activePredictionField=null;hidePredictions()}});
-  window.matchMedia('(max-width:600px)').addEventListener?.('change',()=>{if(isMobilePredictionView())requestPredictionNow(activePredictionField);else if(!toggle.checked)hidePredictions()});
+  window.matchMedia('(max-width:600px)').addEventListener?.('change',()=>{if(isMobilePredictionView()||!toggle.checked)hidePredictions();else requestPredictionNow(activePredictionField)});
 }
 document.addEventListener('input',e=>{const target=e.target;if(target.id==='personOnSitePhone'){const clean=target.value.replace(/\D/g,'');if(clean!==target.value){target.value=clean;showEntryWarning('Digits Only','Phone Number accepts digits from 0 to 9 only.',target)}}else if(target.matches('input[type="text"],input:not([type]),textarea')){const clean=target.value.replace(/[^\x09\x0A\x0D\x20-\x7E]/g,'');if(clean!==target.value){target.value=clean;autoResizeTextarea(target);showEntryWarning('English Entry Required','Please type this information using English letters, numbers, and standard English punctuation only.',target)}}target.classList.remove('field-missing');if(target.matches('[id^="permitType"]')&&['permitTypeGeneral','permitTypeElectrical','permitTypeHotWork','permitTypeHeights','permitTypeOther'].some(id=>$(id)?.checked))document.querySelector('.permit-type-group')?.classList.remove('field-missing')});
 document.addEventListener('change',e=>{e.target.classList.remove('field-missing');if(e.target.id==='safetyRegulationsAck'&&e.target.checked)e.target.closest('.regulations-ack')?.classList.remove('field-missing')});
