@@ -106,7 +106,6 @@ textarea{min-height:105px;resize:none;overflow-y:hidden}.description-wrap{border
 @media (max-width:620px){.app-header,.actions,.actions button{width:100%}.app-header{margin-top:7px;padding:12px 10px}.brand-wrap{width:100%}.container{width:min(100% - 14px,1240px);margin-top:10px}.top-strip{padding:22px 16px;align-items:flex-start}.top-strip .hotel,.top-strip .permit-title{width:100%;text-align:left}.inline-two,.inline-three{grid-template-columns:1fr}textarea{min-height:120px}}
 
 .contractor-regulations{border-top:2px solid var(--line);border-bottom:2px solid var(--line);background:#fff;padding:0}
-.regulations-intro{padding:12px 16px;background:#fffaf0;color:var(--navy);font-weight:800;border-bottom:1px solid var(--line);text-align:center}
 .regulations-list{margin:0;padding:14px 22px 14px 42px;columns:1;column-gap:28px}
 .regulations-list li{margin:0 0 9px;padding-left:4px;break-inside:avoid;color:var(--ink);line-height:1.42}
 .regulations-ack{display:flex;gap:10px;align-items:flex-start;padding:12px 16px;background:#f8fafc;border-top:1px solid var(--line);font-weight:800;color:var(--navy)}
@@ -180,7 +179,7 @@ body{background:radial-gradient(circle at top left,rgba(185,152,90,.16),transpar
 .form-shell{border-color:#101b2f!important;background:#fff!important;box-shadow:0 26px 70px rgba(16,27,47,.14)!important}
 .top-strip{background:linear-gradient(135deg,#101b2f,#203451 62%,#111827)!important;border-bottom:4px solid #b9985a!important}
 .section-title{background:#101b2f!important;color:#fff!important;box-shadow:inset 7px 0 0 #b9985a!important;border-color:#101b2f!important}
-.label,.block-label,.sig-label,.regulations-intro{background:#f8fafc!important;color:#101b2f!important}
+.label,.block-label,.sig-label{background:#f8fafc!important;color:#101b2f!important}
 .input-area,.block-control,.sig-content,.description-wrap,.contractor-regulations{background:#fff!important}
 input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px}input:hover,select:hover,textarea:hover{background:#eef1f7}input:focus,select:focus,textarea:focus{border-color:#b9985a;box-shadow:0 0 0 4px rgba(185,152,90,.17);background:#fff}
 .warning,.regulations-ack{background:#f5efe2!important;color:#101b2f!important;border-color:#d7c49a!important}
@@ -252,11 +251,17 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
 .pdf-regulations-note{margin-top:7px;padding:7px 9px;background:#f2ecdd;border:1.5px solid var(--navy);font-size:9.5px;font-weight:900;color:var(--navy);text-align:center}
 
 /* Signatures */
-.pdf-sig-grid{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--navy);border-top:0}.pdf-signatory{border-right:1px solid #b9c3d3;display:flex;flex-direction:column}.pdf-signatory:last-child{border-right:0}.pdf-signatory-head{padding:7px 9px;background:var(--navy);color:#fff;font-size:10px;font-weight:900;text-align:center;text-transform:uppercase}.pdf-signatory-info{height:102px;background:#fff;border-bottom:1px solid #b9c3d3}.pdf-signatory-info.single{display:flex;align-items:center}.pdf-signatory-info.single .pdf-signatory-row{width:100%;border-top:1px solid #b9c3d3}.pdf-signatory-row{display:grid;grid-template-columns:38% 62%;height:34px;border-bottom:1px solid #b9c3d3}.pdf-signatory-info .pdf-signatory-row:last-child{border-bottom:0}.pdf-signature-label{padding:6px 9px;background:#f2ecdd;color:var(--navy);border-bottom:1px solid #b9c3d3;font-size:9.3px;font-weight:900;text-align:center}.pdf-signature-large{min-height:76px;padding:7px;display:flex;align-items:center;justify-content:center;background:#fff}
-.pdf-sig-lab{background:#f2ecdd;color:var(--navy);border-right:1px solid #b9c3d3;padding:6px 9px;font-size:9.3px;font-weight:900;line-height:1.25;display:flex;align-items:center}
-.pdf-sig-val{padding:6px 9px;font-size:10px;background:#fff;display:flex;flex-direction:column;justify-content:center}
+.pdf-sig-grid{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--navy);border-top:0;background:#fff}.pdf-signatory{display:grid;grid-template-rows:auto auto auto;min-width:0}.pdf-signatory:first-child{border-right:1.5px solid var(--navy)}.pdf-signatory-head{padding:7px 9px;background:var(--navy);color:#fff;border-bottom:1.5px solid var(--navy);font-size:10px;font-weight:900;text-align:center;text-transform:uppercase}.pdf-signatory-info{display:grid;grid-template-rows:repeat(3,34px);height:102px;background:#fff;border-bottom:1.5px solid var(--navy)}.pdf-signatory-row{display:grid;grid-template-columns:38% 62%;min-height:34px;border-bottom:1px solid #9aa8ba}.pdf-signatory-row:last-child{border-bottom:0}.pdf-signature-wrap{display:grid;grid-template-rows:28px 76px}.pdf-signature-label{display:flex;align-items:center;justify-content:center;padding:5px 9px;background:#f2ecdd;color:var(--navy);border-bottom:1px solid #9aa8ba;font-size:9.3px;font-weight:900;text-align:center}.pdf-signature-large{height:76px;padding:7px;display:flex;align-items:center;justify-content:center;background:#fff}
+.pdf-sig-lab{background:#f2ecdd;color:var(--navy);border-right:1px solid #9aa8ba;padding:6px 9px;font-size:9.3px;font-weight:900;line-height:1.25;display:flex;align-items:center}
+.pdf-sig-val{padding:6px 9px;font-size:10px;background:#fff;display:flex;align-items:center;word-break:break-word}
 .pdf-sign-line{height:24px;border-bottom:1px solid var(--navy);margin-top:6px}
 .pdf-sign-img{max-width:100%;max-height:64px}
+
+/* Print-grade contrast: applied only to the generated PDF pages */
+.pdf-sheet{color:#000;-webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+.pdf-sheet .pdf-val,.pdf-sheet .pdf-text-value,.pdf-sheet .pdf-permit-description,.pdf-sheet .pdf-regulations li,.pdf-sheet .pdf-sig-val,.pdf-sheet .pdf-bg,.pdf-sheet .pdf-block-answer{color:#000;font-weight:700}
+.pdf-sheet .pdf-lab,.pdf-sheet .pdf-sig-lab,.pdf-sheet .pdf-text-head,.pdf-sheet .pdf-signature-label{color:#08182f;font-weight:900}
+.pdf-sheet .pdf-cell,.pdf-sheet .pdf-block-row,.pdf-sheet .pdf-signatory-row,.pdf-sheet .pdf-signature-label{border-color:#667085}
 
 /* Post-completion table */
 .pdf-complete{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--navy);border-top:0}.pdf-completion-left{border-right:1px solid var(--navy)}.pdf-completion-left .pdf-block-row{grid-template-columns:1.2fr .43fr!important;border-left:0;border-right:0;border-bottom:1px solid var(--navy)}.pdf-completion-left .pdf-block-row:last-child{border-bottom:1.5px solid var(--navy)!important}.pdf-completion-left .pdf-block-row:last-child>div{border-bottom:0}.pdf-completion-right{display:flex;flex-direction:column}.pdf-completion-row{display:grid;grid-template-columns:45% 55%;min-height:38px;border-bottom:1px solid var(--navy)}.pdf-completion-row .pdf-lab{border-right:1px solid var(--navy)}.pdf-completion-row .pdf-val{border:0}.pdf-completion-sign-label{padding:6px 9px;background:#f2ecdd;color:var(--navy);border-bottom:1px solid var(--navy);font-size:9.5px;font-weight:900;text-align:center}.pdf-completion-sign-box{min-height:62px;padding:6px;display:flex;align-items:center;justify-content:center;background:#fff}
@@ -288,21 +293,19 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
 <header class="app-header">
   <div class="brand-wrap">
     <div class="logo-box">PTW</div>
-    <div class="header-title"><h1>PERMIT TO WORK</h1><p id="workflowSubtitle">Complete the permit, then generate the controlled completion HTML</p></div>
+    <div class="header-title"><h1>PERMIT TO WORK</h1><p id="workflowSubtitle">Complete the permit, then generate the controlled permit HTML</p></div>
   </div>
   <div class="actions">
     <label id="languageControl" class="language-control"><span id="languageLabel">Interface</span><select id="interfaceLanguage" onchange="setInterfaceLanguage(this.value)"><option value="en">English</option><option value="ar">العربية</option><option value="ur">اردو</option></select><small id="languageNote" class="language-note">Entries remain English</small></label>
     <label id="predictionControl" class="prediction-control"><input id="autoPredictionToggle" type="checkbox" checked><span>Online Prediction</span><small>Work + PPE only</small></label>
     <button class="btn-secondary draft-action" onclick="saveDraft()">Save Draft</button>
     <button class="btn-secondary draft-action" onclick="loadDraft()">Load Draft</button>
-    <button id="saveCompletedHtmlButton" class="btn-secondary review-only" onclick="saveCompletedHTML()">Save HTML</button>
     <button id="primaryWorkflowButton" class="btn-primary" onclick="handlePrimaryAction()">Generate Permit</button>
     <button class="btn-danger clear-action" onclick="clearForm()">Clear All</button>
   </div>
   <button id="mobileActionsToggle" class="btn-secondary mobile-actions-toggle" type="button" onclick="toggleMobileActions()">Show Actions</button>
 </header>
 <main class="container">
-  <div id="workflowNotice" class="notice">Complete and sign the permit before work starts. Generate the Completion HTML and keep that file with the permit; after the work is finished, open it, complete the final section, and generate the final PDF.</div>
   <form id="permitForm" class="form-shell" autocomplete="off">
     <div class="top-strip">
       <div class="hotel">CONRAD<br><span style="font-size:11px;letter-spacing:2px">ABU DHABI ETIHAD TOWERS</span></div>
@@ -338,12 +341,11 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
       <div class="block-row"><div class="block-label">The contractor has been briefed on Ablution, Eating and Hours of Work.</div><div class="block-control" data-mobile-label="Engineering"><select class="initial-input" id="briefHours" data-label="Ablution/Eating/Hours Engineering Approval"><option value="">Select</option><option>Yes</option><option>No</option></select></div><div class="block-label">The Contractor will be working on the Domestic Water System</div><div class="block-control" data-mobile-label="Contractor"><select id="waterSystem" data-label="Domestic Water System"><option value="">Select</option><option>Yes</option><option>No</option></select></div></div>
       <div class="block-row"><div class="block-label">The contractor has been briefed on Security Regulations whilst on site.</div><div class="block-control" data-mobile-label="Engineering"><select class="initial-input" id="briefSecurity" data-label="Security Regulations Engineering Approval"><option value="">Select</option><option>Yes</option><option>No</option></select></div><div class="block-label">The Contractor will be working on the Fire Detection/Fire Protection Systems</div><div class="block-control" data-mobile-label="Contractor"><select id="fireProtection" data-label="Fire Detection/Protection Systems"><option value="">Select</option><option>Yes</option><option>No</option></select></div></div>
       <div class="block-row"><div class="block-label">The contractor has been briefed on access to site and storage of materials.</div><div class="block-control" data-mobile-label="Engineering"><select class="initial-input" id="briefAccess" data-label="Access and Storage Engineering Approval"><option value="">Select</option><option>Yes</option><option>No</option></select></div><div class="block-label">The Contractor will be Working At Heights (2m or More)</div><div class="block-control" data-mobile-label="Contractor"><select id="heights" data-label="Working At Heights"><option value="">Select</option><option>Yes</option><option>No</option></select></div></div>
-      <div class="block-row"><div class="block-label">The contractor has been briefed on Safety Regulations on reverse of this form.</div><div class="block-control" data-mobile-label="Engineering"><select class="initial-input" id="briefSafety" data-label="Safety Regulations Engineering Approval"><option value="">Select</option><option>Yes</option><option>No</option></select></div><div class="block-label">The Contractor will be working in Confined Spaces</div><div class="block-control" data-mobile-label="Contractor"><select id="confinedSpaces" data-label="Confined Spaces"><option value="">Select</option><option>Yes</option><option>No</option></select></div></div>
+      <div class="block-row"><div class="block-label">The contractor has been briefed on below Safety Regulations.</div><div class="block-control" data-mobile-label="Engineering"><select class="initial-input" id="briefSafety" data-label="Safety Regulations Engineering Approval"><option value="">Select</option><option>Yes</option><option>No</option></select></div><div class="block-label">The Contractor will be working in Confined Spaces</div><div class="block-control" data-mobile-label="Contractor"><select id="confinedSpaces" data-label="Confined Spaces"><option value="">Select</option><option>Yes</option><option>No</option></select></div></div>
     </div>
 
     <div class="section-title">Contractors Safety Regulations</div>
     <section class="contractor-regulations">
-      <div class="regulations-intro">The contractor and all contractor personnel must comply with the following safety regulations throughout the work.</div>
       <ol class="regulations-list">
         <li>Contractors will ensure that their personnel are provided with appropriate safety equipment for the work being carried out.</li>
         <li>Work areas will be cordoned off with suitable barriers where necessary. Barriers must prevent unauthorised access to the work area. Danger tape is not permitted for cordoning off work areas.</li>
@@ -366,26 +368,6 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
       <section class="signatory-section"><div class="signatory-header">Senior Contractor Representative</div><div class="signatory-fields"><div class="signatory-info single"><label><span>Issue Date</span><div class="picker-field"><input id="issueDate" type="text" inputmode="none" readonly placeholder="dd/mmm/yyyy" data-label="Issue Date"><button type="button" class="picker-trigger" aria-label="Open issue-date calendar" onclick="openDateCalendar($('issueDate'))"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button></div></label></div><div class="signature-field">Signature *<canvas id="contractorSig" class="sign-pad" data-label="Signature of Senior Contractor Representative"></canvas><button type="button" class="btn-secondary btn-small" onclick="clearSignature('contractorSig')">Clear Signature</button></div></div></section>
       <section class="signatory-section"><div class="signatory-header">Responsible Conrad Team Member</div><div class="signatory-fields"><div class="signatory-info signatory-identity-row"><label><span>Name *</span><input id="responsibleName" placeholder="Print name" data-label="Responsible Conrad Team Member Name" required></label><label><span>Employee ID *</span><input id="responsibleId" placeholder="Employee ID" data-label="Responsible Conrad Team Member Employee ID" required></label><label><span>Designation *</span><input id="responsibleDesignation" placeholder="Designation" data-label="Responsible Conrad Team Member Designation" required></label></div><div class="signature-field">Signature *<canvas id="conradSig" class="sign-pad" data-label="Signature of Responsible Conrad Team Member"></canvas><button type="button" class="btn-secondary btn-small" onclick="clearSignature('conradSig')">Clear Signature</button></div></div></section>
     </div></form>
-    <section id="completionPanel" class="completion-panel" aria-label="Section to be completed after work">
-      <div class="section-title">Section must be completed and signed after completion of work</div>
-      <div class="completion-intro">The issued permit above is locked and read-only. Complete every item below after the work has finished.</div>
-      <div class="completion-grid">
-        <div class="completion-checks">
-          <div class="completion-row"><label for="completeSatisfactory">Work completed satisfactorily *</label><select id="completeSatisfactory" data-label="Work completed satisfactorily"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
-          <div class="completion-row"><label for="completeDocuments">Drawings, O&amp;M Manuals and Guarantees received *</label><select id="completeDocuments" data-label="Drawings, O&M Manuals and Guarantees received"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
-          <div class="completion-row"><label for="completePermits">All supplementary permits closed *</label><select id="completePermits" data-label="All supplementary permits closed"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
-          <div class="completion-row"><label for="completeDebris">All work debris cleared from site *</label><select id="completeDebris" data-label="All work debris cleared from site"><option value="">Select</option><option>Yes</option><option>No</option></select></div>
-        </div>
-        <div class="completion-details">
-          <label><span class="field-caption">Name of Responsible Conrad Team Member *</span><input id="completionName" data-label="Completion Responsible Team Member Name"></label>
-          <label><span class="field-caption">Employee ID *</span><input id="completionId" data-label="Completion Responsible Team Member Employee ID"></label>
-          <label><span class="field-caption">Designation *</span><input id="completionDesignation" data-label="Completion Responsible Team Member Designation"></label>
-          <label><span class="field-caption">Completion Date *</span><div class="picker-field"><input id="completionDate" type="text" inputmode="none" readonly placeholder="dd/mmm/yyyy" data-label="Completion Date"><button type="button" class="picker-trigger" aria-label="Open completion-date calendar" onclick="openDateCalendar($('completionDate'))"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></button></div></label>
-          <label><span class="field-caption">Signature of Responsible Conrad Team Member *</span><canvas id="completionSig" class="sign-pad" data-label="Completion Signature"></canvas></label>
-          <button type="button" class="btn-secondary btn-small" onclick="clearSignature('completionSig')">Clear Signature</button>
-        </div>
-      </div>
-    </section>
 </main>
 <script id="embeddedPermitData" type="application/json"></script>
 <div id="reportMount" class="report-page"></div>
@@ -397,14 +379,14 @@ input,select,textarea{border-color:#d7dde7;background:#f2f2f7;border-radius:14px
 <div id="toast" class="toast"></div>
 <script>
 const $=id=>document.getElementById(id);
-const signatureState={contractorSig:false,conradSig:false,completionSig:false};
-const embeddedSignatureData={contractorSig:'',conradSig:'',completionSig:''};
+const signatureState={contractorSig:false,conradSig:false};
+const embeddedSignatureData={contractorSig:'',conradSig:''};
 let reviewMode=false;
 const monthNames=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 function formatDate(value){if(!value)return '';const v=String(value).trim();let d,m,y;let x=v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);if(x){y=+x[1];m=+x[2];d=+x[3]}else{x=v.match(/^(\d{1,2})[\/-]([A-Za-z]{3}|\d{1,2})[\/-](\d{4})$/);if(!x)return v;d=+x[1];y=+x[3];m=/^\d+$/.test(x[2])?+x[2]:monthNames.findIndex(n=>n.toLowerCase()===x[2].toLowerCase())+1}if(!d||m<1||m>12||y<1900)return v;return `${String(d).padStart(2,'0')}/${monthNames[m-1]}/${y}`}
 function today(){const d=new Date();return `${String(d.getDate()).padStart(2,'0')}/${monthNames[d.getMonth()]}/${d.getFullYear()}`}
 function displayDateToISO(value){if(!value)return '';const v=String(value).trim();let x=v.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);if(x)return `${x[1]}-${String(x[2]).padStart(2,'0')}-${String(x[3]).padStart(2,'0')}`;x=v.match(/^(\d{1,2})[\/-]([A-Za-z]{3}|\d{1,2})[\/-](\d{4})$/);if(!x)return '';const m=/^\d+$/.test(x[2])?+x[2]:monthNames.findIndex(n=>n.toLowerCase()===x[2].toLowerCase())+1;if(m<1||m>12)return '';return `${x[3]}-${String(m).padStart(2,'0')}-${String(x[1]).padStart(2,'0')}`}
-function normalizeDateFields(){['validDate','expireDate','issueDate','completionDate'].forEach(id=>{const el=$(id);if(el&&el.value)el.value=formatDate(el.value)})}
+function normalizeDateFields(){['validDate','expireDate','issueDate'].forEach(id=>{const el=$(id);if(el&&el.value)el.value=formatDate(el.value)})}
 function initDates(){['validDate','expireDate','issueDate'].forEach(id=>{if($(id)&&!$(id).value)$(id).value=today()})}
 let activeTimeField=null;
 function positionTimePicker(){const pop=$('timePickerPopup');if(!pop?.classList.contains('show')||!activeTimeField)return;const r=activeTimeField.getBoundingClientRect(),gap=7,w=pop.offsetWidth,h=pop.offsetHeight;let left=Math.min(Math.max(8,r.left),window.innerWidth-w-8),top=r.bottom+gap;if(top+h>window.innerHeight-8)top=Math.max(8,r.top-h-gap);pop.style.left=left+'px';pop.style.top=top+'px'}
@@ -442,9 +424,9 @@ ar:{
 'Routine maintenance, installation, repair or other general work not covered by a specialist permit.':'صيانة أو تركيب أو إصلاح روتيني أو أعمال عامة .','Work on electrical systems, distribution boards, circuits, isolation points or energized equipment.':'العمل على الأنظمة الكهربائية ولوحات التوزيع والدوائر ونقاط العزل أو المعدات الكهربائية.','Welding, cutting, brazing, soldering, grinding or any activity producing heat, sparks or flame.':'اللحام والقطع والجلخ أو أي نشاط ينتج حرارة أو شرار أو لهيب نار.','Work at 2 metres or above, including ladders, scaffolds, elevated platforms or exposed edges.':'العمل على ارتفاع مترين أو أكثر، بما يشمل السلالم والسقالات والمنصات والحواف المكشوفة.','Select when another controlled activity or supplementary authorization is required and describe it below.':'اختر هذا الخيار عند الحاجة إلى نشاط خاضع للرقابة أو تصريح تكميلي، ثم صفه أدناه.',
 'Company Name *':'اسم الشركة *','Property Name *':'اسم المنشأة *','Name of Senior Company Person | Emirates ID# *':'اسم مسؤول الشركة الأول | رقم الهوية الإماراتية *','Place of Work *':'مكان العمل *','Number of Persons on this Permit *':'عدد الأشخاص المشمولين بالتصريح *','Person On Site & Phone Number *':'الشخص الموجود في الموقع ورقم الهاتف *','Asset Code if Applicable':'رمز الأصل إن وجد','LPO Number':'رقم أمر الشراء المحلي','VALID FROM (Time/Date) *':'صالح من (الوقت/التاريخ) *','PERMIT EXPIRES (Time/Date) *':'انتهاء التصريح (الوقت/التاريخ) *',
 'Description of Work to Be Carried Out *':'وصف العمل المطلوب تنفيذه *','Personal Protective Equipment (PPE) Used *':'معدات الوقاية الشخصية المستخدمة *','Briefing / Requirement':'الإحاطة / المتطلبات','Engineering':'الهندسة','Work Activity':'نشاط العمل','Contractor':'المقاول',
-'The contractor has been briefed on ACTION IN EVEN OF FIRE!':'تم إطلاع المقاول على الإجراءات الواجب اتباعها في حالة الحريق!','The contractor has been briefed on PPE, Dress & Behavior Codes.':'تم إطلاع المقاول على معدات الوقاية وقواعد اللباس والسلوك.','The contractor has been briefed on Ablution, Eating and Hours of Work.':'تم إطلاع المقاول على مرافق الوضوء وتناول الطعام وساعات العمل.','The contractor has been briefed on Security Regulations whilst on site.':'تم إطلاع المقاول على لوائح الأمن أثناء وجوده في الموقع.','The contractor has been briefed on access to site and storage of materials.':'تم إطلاع المقاول على دخول الموقع وتخزين المواد.','The contractor has been briefed on Safety Regulations on reverse of this form.':'تم إطلاع المقاول على لوائح السلامة الواردة في هذا النموذج.',
+'The contractor has been briefed on ACTION IN EVEN OF FIRE!':'تم إطلاع المقاول على الإجراءات الواجب اتباعها في حالة الحريق!','The contractor has been briefed on PPE, Dress & Behavior Codes.':'تم إطلاع المقاول على معدات الوقاية وقواعد اللباس والسلوك.','The contractor has been briefed on Ablution, Eating and Hours of Work.':'تم إطلاع المقاول على مرافق الوضوء وتناول الطعام وساعات العمل.','The contractor has been briefed on Security Regulations whilst on site.':'تم إطلاع المقاول على لوائح الأمن أثناء وجوده في الموقع.','The contractor has been briefed on access to site and storage of materials.':'تم إطلاع المقاول على دخول الموقع وتخزين المواد.','The contractor has been briefed on below Safety Regulations.':'تم إطلاع المقاول على لوائح السلامة أدناه.',
 'The Contractor will be welding, brazing, soldering or other Hot Works':'سيقوم المقاول باللحام أو القطع أو غيرها من الأعمال الساخنة.','The Contractor will be working on the Power & Distribution System':'سيعمل المقاول على نظام الطاقة والتوزيع.','The Contractor will be working on the Domestic Water System':'سيعمل المقاول على نظام المياه المنزلية.','The Contractor will be working on the Fire Detection/Fire Protection Systems':'سيعمل المقاول على أنظمة كشف أو مكافحة الحريق.','The Contractor will be Working At Heights (2m or More)':'سيعمل المقاول على ارتفاع مترين أو أكثر.','The Contractor will be working in Confined Spaces':'سيعمل المقاول في الأماكن المحصورة.',
-'Contractors Safety Regulations':'لوائح سلامة المقاولين','The contractor and all contractor personnel must comply with the following safety regulations throughout the work.':'يجب على المقاول وجميع العاملين لديه الالتزام بلوائح السلامة التالية طوال فترة العمل.','I confirm that the contractor has read, understood, and agreed to comply with all Contractor Safety Regulations listed above.':'أؤكد أن المقاول قرأ وفهم ووافق على الالتزام بجميع لوائح سلامة المقاولين المذكورة أعلاه.',
+'Contractors Safety Regulations':'لوائح سلامة المقاولين','I confirm that the contractor has read, understood, and agreed to comply with all Contractor Safety Regulations listed above.':'أؤكد أن المقاول قرأ وفهم ووافق على الالتزام بجميع لوائح سلامة المقاولين المذكورة أعلاه.',
 'Senior Contractor Representative':'ممثل المقاول الأول','Responsible Conrad Team Member':'عضو فريق كونراد المسؤول','Issue Date':'تاريخ الإصدار','Name *':'الاسم *','Employee ID *':'الرقم الوظيفي *','Designation *':'المسمى الوظيفي *','Signature *':'التوقيع *','Clear Signature':'مسح التوقيع',
 'Section must be completed and signed after completion of work':'يجب إكمال هذا القسم وتوقيعه بعد انتهاء العمل','The issued permit above is locked and read-only. Complete every item below after the work has finished.':'التصريح الصادر أعلاه مقفل للقراءة فقط. أكمل جميع البنود أدناه بعد انتهاء العمل.','Work completed satisfactorily *':'تم إنجاز العمل بشكل مرضٍ *','Drawings, O&M Manuals and Guarantees received *':'تم استلام الرسومات وأدلة التشغيل والضمانات *','All supplementary permits closed *':'تم إغلاق جميع التصاريح التكميلية *','All work debris cleared from site *':'تمت إزالة جميع مخلفات العمل من الموقع *','Name of Responsible Conrad Team Member *':'اسم عضو فريق كونراد المسؤول *','Completion Date *':'تاريخ الإنجاز *','Signature of Responsible Conrad Team Member *':'توقيع عضو فريق كونراد المسؤول *','Select':'اختر','Yes':'نعم','No':'لا','Save HTML':'حفظ HTML','Generate Final PDF':'إنشاء ملف PDF النهائي'
 },
@@ -454,9 +436,9 @@ ur:{
 'Routine maintenance, installation, repair or other general work not covered by a specialist permit.':'معمول کی دیکھ بھال، تنصیب، مرمت یا ایسا عمومی کام جو خصوصی پرمٹ میں شامل نہ ہو۔','Work on electrical systems, distribution boards, circuits, isolation points or energized equipment.':'برقی نظام، ڈسٹری بیوشن بورڈ، سرکٹ، آئسولیشن پوائنٹ یا برقی آلات پر کام۔','Welding, cutting, brazing, soldering, grinding or any activity producing heat, sparks or flame.':'ویلڈنگ، کٹنگ، گرائنڈنگ یا کوئی بھی کام جس سے حرارت، چنگاری یا شعلہ پیدا ہو۔','Work at 2 metres or above, including ladders, scaffolds, elevated platforms or exposed edges.':'دو میٹر یا اس سے زیادہ بلندی پر سیڑھی، اسکیفولڈ، پلیٹ فارم یا کھلے کنارے پر کام۔','Select when another controlled activity or supplementary authorization is required and describe it below.':'جب کسی دوسرے کنٹرول شدہ کام یا اضافی اجازت کی ضرورت ہو تو منتخب کریں اور نیچے وضاحت کریں۔',
 'Company Name *':'کمپنی کا نام *','Property Name *':'پراپرٹی کا نام *','Name of Senior Company Person | Emirates ID# *':'سینئر کمپنی نمائندے کا نام | امارات آئی ڈی نمبر *','Place of Work *':'کام کی جگہ *','Number of Persons on this Permit *':'اس پرمٹ میں افراد کی تعداد *','Person On Site & Phone Number *':'سائٹ پر موجود شخص اور فون نمبر *','Asset Code if Applicable':'اثاثہ کوڈ، اگر قابل اطلاق ہو','LPO Number':'ایل پی او نمبر','VALID FROM (Time/Date) *':'درست از (وقت/تاریخ) *','PERMIT EXPIRES (Time/Date) *':'پرمٹ کی میعاد (وقت/تاریخ) *',
 'Description of Work to Be Carried Out *':'کئے جانے والے کام کی تفصیل *','Personal Protective Equipment (PPE) Used *':'استعمال ہونے والا ذاتی حفاظتی سامان *','Briefing / Requirement':'بریفنگ / ضرورت','Engineering':'انجینئرنگ','Work Activity':'کام کی سرگرمی','Contractor':'ٹھیکیدار',
-'The contractor has been briefed on ACTION IN EVEN OF FIRE!':'ٹھیکیدار کو آگ لگنے کی صورت میں کارروائی سے آگاہ کیا گیا ہے!','The contractor has been briefed on PPE, Dress & Behavior Codes.':'ٹھیکیدار کو پی پی ای، لباس اور رویے کے اصول بتائے گئے ہیں۔','The contractor has been briefed on Ablution, Eating and Hours of Work.':'ٹھیکیدار کو وضو، کھانے اور کام کے اوقات سے آگاہ کیا گیا ہے۔','The contractor has been briefed on Security Regulations whilst on site.':'ٹھیکیدار کو سائٹ کے حفاظتی ضوابط بتائے گئے ہیں۔','The contractor has been briefed on access to site and storage of materials.':'ٹھیکیدار کو سائٹ تک رسائی اور سامان کے ذخیرے سے آگاہ کیا گیا ہے۔','The contractor has been briefed on Safety Regulations on reverse of this form.':'ٹھیکیدار کو اس فارم کے حفاظتی ضوابط بتائے گئے ہیں۔',
+'The contractor has been briefed on ACTION IN EVEN OF FIRE!':'ٹھیکیدار کو آگ لگنے کی صورت میں کارروائی سے آگاہ کیا گیا ہے!','The contractor has been briefed on PPE, Dress & Behavior Codes.':'ٹھیکیدار کو پی پی ای، لباس اور رویے کے اصول بتائے گئے ہیں۔','The contractor has been briefed on Ablution, Eating and Hours of Work.':'ٹھیکیدار کو وضو، کھانے اور کام کے اوقات سے آگاہ کیا گیا ہے۔','The contractor has been briefed on Security Regulations whilst on site.':'ٹھیکیدار کو سائٹ کے حفاظتی ضوابط بتائے گئے ہیں۔','The contractor has been briefed on access to site and storage of materials.':'ٹھیکیدار کو سائٹ تک رسائی اور سامان کے ذخیرے سے آگاہ کیا گیا ہے۔','The contractor has been briefed on below Safety Regulations.':'ٹھیکیدار کو ذیل میں دیے گئے حفاظتی ضوابط سے آگاہ کیا گیا ہے۔',
 'The Contractor will be welding, brazing, soldering or other Hot Works':'ٹھیکیدار ویلڈنگ، کٹنگ یا دیگر ہاٹ ورک کرے گا۔','The Contractor will be working on the Power & Distribution System':'ٹھیکیدار بجلی اور تقسیم کے نظام پر کام کرے گا۔','The Contractor will be working on the Domestic Water System':'ٹھیکیدار گھریلو پانی کے نظام پر کام کرے گا۔','The Contractor will be working on the Fire Detection/Fire Protection Systems':'ٹھیکیدار آگ کی شناخت یا حفاظت کے نظام پر کام کرے گا۔','The Contractor will be Working At Heights (2m or More)':'ٹھیکیدار دو میٹر یا اس سے زیادہ بلندی پر کام کرے گا۔','The Contractor will be working in Confined Spaces':'ٹھیکیدار محدود جگہوں میں کام کرے گا۔',
-'Contractors Safety Regulations':'ٹھیکیدار کے حفاظتی ضوابط','The contractor and all contractor personnel must comply with the following safety regulations throughout the work.':'ٹھیکیدار اور اس کے تمام کارکنوں کو کام کے دوران درج ذیل حفاظتی ضوابط کی پابندی کرنا ہوگی۔','I confirm that the contractor has read, understood, and agreed to comply with all Contractor Safety Regulations listed above.':'میں تصدیق کرتا ہوں کہ ٹھیکیدار نے اوپر دیے گئے تمام حفاظتی ضوابط پڑھ، سمجھ اور قبول کیے ہیں۔',
+'Contractors Safety Regulations':'ٹھیکیدار کے حفاظتی ضوابط','I confirm that the contractor has read, understood, and agreed to comply with all Contractor Safety Regulations listed above.':'میں تصدیق کرتا ہوں کہ ٹھیکیدار نے اوپر دیے گئے تمام حفاظتی ضوابط پڑھ، سمجھ اور قبول کیے ہیں۔',
 'Senior Contractor Representative':'سینئر ٹھیکیدار نمائندہ','Responsible Conrad Team Member':'ذمہ دار کونراڈ ٹیم ممبر','Issue Date':'اجراء کی تاریخ','Name *':'نام *','Employee ID *':'ملازم آئی ڈی *','Designation *':'عہدہ *','Signature *':'دستخط *','Clear Signature':'دستخط صاف کریں',
 'Section must be completed and signed after completion of work':'کام مکمل ہونے کے بعد یہ حصہ مکمل اور دستخط ہونا ضروری ہے','The issued permit above is locked and read-only. Complete every item below after the work has finished.':'اوپر جاری شدہ پرمٹ مقفل اور صرف پڑھنے کے لیے ہے۔ کام مکمل ہونے کے بعد نیچے تمام خانے پُر کریں۔','Work completed satisfactorily *':'کام اطمینان بخش طور پر مکمل ہوا *','Drawings, O&M Manuals and Guarantees received *':'ڈرائنگ، آپریشن مینوئل اور ضمانتیں موصول ہوئیں *','All supplementary permits closed *':'تمام اضافی پرمٹ بند کر دیے گئے *','All work debris cleared from site *':'کام کا تمام ملبہ سائٹ سے صاف کر دیا گیا *','Name of Responsible Conrad Team Member *':'ذمہ دار کونراڈ ٹیم ممبر کا نام *','Completion Date *':'تکمیل کی تاریخ *','Signature of Responsible Conrad Team Member *':'ذمہ دار کونراڈ ٹیم ممبر کے دستخط *','Select':'منتخب کریں','Yes':'ہاں','No':'نہیں','Save HTML':'HTML محفوظ کریں','Generate Final PDF':'حتمی PDF بنائیں'
 }};
@@ -554,10 +536,6 @@ function collectData(){
   d.permitTypes=selected.join(', ');
   d.contractorSig=signatureState.contractorSig?$('contractorSig').toDataURL('image/png'):embeddedSignatureData.contractorSig;
   d.conradSig=signatureState.conradSig?$('conradSig').toDataURL('image/png'):embeddedSignatureData.conradSig;
-  d.completeSatisfactory=fieldValue('completeSatisfactory');d.completeDocuments=fieldValue('completeDocuments');
-  d.completePermits=fieldValue('completePermits');d.completeDebris=fieldValue('completeDebris');
-  d.completionName=fieldValue('completionName');d.completionId=fieldValue('completionId');d.completionDesignation=fieldValue('completionDesignation');d.completionDate=fieldValue('completionDate');
-  d.completionSig=signatureState.completionSig?$('completionSig').toDataURL('image/png'):embeddedSignatureData.completionSig;
   return d;
 }
 let lastMissingTarget=null;
@@ -574,16 +552,10 @@ function validateForm(){
   if(!signatureState.conradSig)registerMissing(missing,'Signature of Responsible Conrad Team Member',$('conradSig'));
   return missing;
 }
-function validateCompletion(){
-  clearMissingHighlights();const missing=[];
-  ['completeSatisfactory','completeDocuments','completePermits','completeDebris','completionName','completionId','completionDesignation','completionDate'].forEach(id=>{const el=$(id);if(!fieldValue(id))registerMissing(missing,el.dataset.label||id,el)});
-  if(!signatureState.completionSig)registerMissing(missing,'Signature of Responsible Conrad Team Member',$('completionSig'));
-  return missing;
-}
 function restoreSignature(id,src){if(!src||!$(id))return;embeddedSignatureData[id]=src;const img=new Image();img.onload=()=>{const c=$(id),r=c.getBoundingClientRect();if(r.width<10||r.height<10)return;const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,r.width,r.height);signatureState[id]=true};img.src=src}
-function applyData(d){const dateIds=new Set(['validDate','expireDate','issueDate','completionDate']);Object.keys(d).forEach(id=>{const el=$(id);if(!el||id.includes('Sig'))return;if(el.type==='checkbox')el.checked=!!d[id];else if('value' in el)el.value=dateIds.has(id)?formatDate(d[id]||''):(d[id]||'')});['contractorSig','conradSig','completionSig'].forEach(id=>{embeddedSignatureData[id]=d[id]||'';restoreSignature(id,d[id])});toggleOtherPermitType();requestAnimationFrame(resizeLongTextFields)}
-function enterReviewMode(d){reviewMode=true;document.body.classList.add('review-mode');$('completionPanel').classList.add('active');setCanvasSize($('completionSig'));applyData(d);normalizeDateFields();$('primaryWorkflowButton').textContent='Generate Final PDF';$('workflowSubtitle').textContent='Issued permit review and post-work completion';$('workflowNotice').innerHTML='<b>Controlled completion copy:</b> all issued permit fields are locked. Complete the post-work section below, then generate the final PDF.';document.querySelectorAll('#permitForm input,#permitForm textarea,#permitForm select').forEach(el=>el.disabled=true);if(!$('completionDate').value)$('completionDate').value=today()}
-function enterFinalizedMode(d){document.body.classList.add('finalized-html');document.querySelectorAll('#completionPanel input,#completionPanel select').forEach(el=>el.disabled=true);$('completionSig').style.pointerEvents='none';$('workflowSubtitle').textContent='Finalized permit — read-only and A4 print ready';$('workflowNotice').innerHTML='';$('workflowNotice').style.display='none';buildReport(d);closeDateCalendar()}
+function applyData(d){const dateIds=new Set(['validDate','expireDate','issueDate']);Object.keys(d).forEach(id=>{const el=$(id);if(!el||id.includes('Sig'))return;if(el.type==='checkbox')el.checked=!!d[id];else if('value' in el)el.value=dateIds.has(id)?formatDate(d[id]||''):(d[id]||'')});['contractorSig','conradSig'].forEach(id=>{embeddedSignatureData[id]=d[id]||'';restoreSignature(id,d[id])});toggleOtherPermitType();requestAnimationFrame(resizeLongTextFields)}
+function enterReviewMode(d){reviewMode=true;document.body.classList.add('review-mode');applyData(d);normalizeDateFields();$('primaryWorkflowButton').textContent='Generate Final PDF';$('workflowSubtitle').textContent='Issued permit — read-only and ready for PDF';document.querySelectorAll('#permitForm input,#permitForm textarea,#permitForm select').forEach(el=>el.disabled=true)}
+function enterFinalizedMode(d){document.body.classList.add('finalized-html');$('workflowSubtitle').textContent='Finalized permit — read-only and A4 print ready';buildReport(d);closeDateCalendar()}
 function safeJsonForHtml(d){return JSON.stringify(d).replace(/</g,'\\u003c').replace(/-->/g,'--\\u003e')}
 function downloadEmbeddedHTML(d,filename,message,finalized=false,openAfterDownload=false){
   const clone=document.documentElement.cloneNode(true),dataNode=clone.querySelector('#embeddedPermitData');dataNode.textContent=safeJsonForHtml(d);
@@ -591,9 +563,8 @@ function downloadEmbeddedHTML(d,filename,message,finalized=false,openAfterDownlo
   clone.querySelector('body').dataset.generatedPermit='true';
   clone.querySelector('body').classList.add('review-mode');
   clone.querySelector('.actions')?.classList.remove('mobile-collapsed');
-  clone.querySelectorAll('.actions button').forEach(button=>{if(!['saveCompletedHtmlButton','primaryWorkflowButton'].includes(button.id))button.remove()});
+  clone.querySelectorAll('.actions button').forEach(button=>{if(button.id!=='primaryWorkflowButton')button.remove()});
   const generatedPrimary=clone.querySelector('#primaryWorkflowButton');if(generatedPrimary)generatedPrimary.textContent='Generate Final PDF';
-  const generatedSave=clone.querySelector('#saveCompletedHtmlButton');if(generatedSave){if(finalized)generatedSave.remove();else{generatedSave.classList.remove('review-only');generatedSave.style.display='inline-flex'}}
   clone.querySelector('#mobileActionsToggle')?.remove();
   clone.querySelectorAll('#permitForm input,#permitForm textarea,#permitForm select').forEach(el=>{el.disabled=true;el.setAttribute('disabled','disabled');el.setAttribute('aria-readonly','true')});
   clone.querySelectorAll('#permitForm .sign-pad').forEach(el=>{el.style.pointerEvents='none';el.setAttribute('aria-readonly','true')});
@@ -610,7 +581,6 @@ function generateCompletionHTML(){
   downloadEmbeddedHTML(collectData(),`Permit_to_Work_${stamp}.html`,openOnDesktop?'Permit generated and opened':'Permit HTML saved to device Downloads',false,openOnDesktop);
   setTimeout(()=>updateGenerationProgress(78,'Saving the permit HTML…'),120);setTimeout(finishGenerationProgress,420);
 }
-function saveCompletedHTML(){const missing=validateCompletion();if(missing.length){showModal('Completion Information Missing',`<p>Complete every highlighted item before saving the finalized HTML:</p><div class="missing-list">${missing.map(x=>'• '+esc(x)).join('<br>')}</div>`,lastMissingTarget);return}const stamp=new Date().toISOString().slice(0,10);downloadEmbeddedHTML(collectData(),`Permit_to_Work_Final_${stamp}.html`,'Final read-only HTML saved',true)}
 function handlePrimaryAction(){reviewMode?generatePDF():generateCompletionHTML()}
 function saveDraft(){const d=collectData();localStorage.setItem('generalPermitDraft',JSON.stringify(d));toast('Draft saved successfully')}
 function loadDraft(){const raw=localStorage.getItem('generalPermitDraft');if(!raw){toast('No saved draft found');return}const d=JSON.parse(raw);Object.keys(d).forEach(id=>{if(!$(id)||id.includes('Sig'))return;if($(id).type==='checkbox')$(id).checked=!!d[id];else $(id).value=d[id]||''});['contractorSig','conradSig'].forEach(id=>{if(d[id]&&$(id)){const img=new Image();img.onload=()=>{const c=$(id);const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height);ctx.drawImage(img,0,0,c.getBoundingClientRect().width,c.getBoundingClientRect().height);signatureState[id]=true};img.src=d[id];}});toggleOtherPermitType();resizeLongTextFields();toast('Draft loaded')}
@@ -653,7 +623,7 @@ $('reportMount').innerHTML=`
   <div class="pdf-block-row"><div class="pdf-bg">The contractor has been briefed on Ablution, Eating and Hours of Work.</div><div class="pdf-block-answer">${yn(d.briefHours)}</div><div class="pdf-bg">The Contractor will be working on the Domestic Water System</div><div class="pdf-block-answer">${yn(d.waterSystem)}</div></div>
   <div class="pdf-block-row"><div class="pdf-bg">The contractor has been briefed on Security Regulations whilst on site.</div><div class="pdf-block-answer">${yn(d.briefSecurity)}</div><div class="pdf-bg">The Contractor will be working on the Fire Detection/Fire Protection Systems</div><div class="pdf-block-answer">${yn(d.fireProtection)}</div></div>
   <div class="pdf-block-row"><div class="pdf-bg">The contractor has been briefed on access to site and storage of materials.</div><div class="pdf-block-answer">${yn(d.briefAccess)}</div><div class="pdf-bg">The Contractor will be Working At Heights (2m or More)</div><div class="pdf-block-answer">${yn(d.heights)}</div></div>
-  <div class="pdf-block-row"><div class="pdf-bg">The contractor has been briefed on Safety Regulations on reverse of this form.</div><div class="pdf-block-answer">${yn(d.briefSafety)}</div><div class="pdf-bg">The Contractor will be working in Confined Spaces</div><div class="pdf-block-answer">${yn(d.confinedSpaces)}</div></div>
+  <div class="pdf-block-row"><div class="pdf-bg">The contractor has been briefed on below Safety Regulations.</div><div class="pdf-block-answer">${yn(d.briefSafety)}</div><div class="pdf-bg">The Contractor will be working in Confined Spaces</div><div class="pdf-block-answer">${yn(d.confinedSpaces)}</div></div>
   ${pdfFooter(1)}</section>
   <section class="pdf-sheet">${pdfHeader()}
   <div class="pdf-section">CONTRACTORS SAFETY REGULATIONS</div>
@@ -677,28 +647,13 @@ $('reportMount').innerHTML=`
     <div class="pdf-regulations-note">ACKNOWLEDGED BY CONTRACTOR: ${d.safetyRegulationsAck ? 'YES' : 'NO'}</div>
   </div>
   <div class="pdf-sig-grid">
-    <div class="pdf-signatory"><div class="pdf-signatory-head">Senior Contractor Representative</div><div class="pdf-signatory-info single"><div class="pdf-signatory-row"><div class="pdf-sig-lab">Issue Date</div><div class="pdf-sig-val">${esc(formatDate(d.issueDate))}</div></div></div><div class="pdf-signature-label">Signature</div><div class="pdf-signature-large">${sigImg(d.contractorSig)}</div></div>
-    <div class="pdf-signatory"><div class="pdf-signatory-head">Responsible Conrad Team Member</div><div class="pdf-signatory-info"><div class="pdf-signatory-row"><div class="pdf-sig-lab">Name</div><div class="pdf-sig-val">${esc(d.responsibleName)}</div></div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Employee ID</div><div class="pdf-sig-val">${esc(d.responsibleId)}</div></div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Designation</div><div class="pdf-sig-val">${esc(d.responsibleDesignation)}</div></div></div><div class="pdf-signature-label">Signature</div><div class="pdf-signature-large">${sigImg(d.conradSig)}</div></div>
+    <div class="pdf-signatory"><div class="pdf-signatory-head">Senior Contractor Representative</div><div class="pdf-signatory-info"><div class="pdf-signatory-row"><div class="pdf-sig-lab">Name</div><div class="pdf-sig-val">${esc(d.seniorName)}</div></div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Company</div><div class="pdf-sig-val">${esc(d.companyName)}</div></div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Issue Date</div><div class="pdf-sig-val">${esc(formatDate(d.issueDate))}</div></div></div><div class="pdf-signature-wrap"><div class="pdf-signature-label">Signature</div><div class="pdf-signature-large">${sigImg(d.contractorSig)}</div></div></div>
+    <div class="pdf-signatory"><div class="pdf-signatory-head">Responsible Conrad Team Member</div><div class="pdf-signatory-info"><div class="pdf-signatory-row"><div class="pdf-sig-lab">Name</div><div class="pdf-sig-val">${esc(d.responsibleName)}</div></div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Employee ID</div><div class="pdf-sig-val">${esc(d.responsibleId)}</div></div><div class="pdf-signatory-row"><div class="pdf-sig-lab">Designation</div><div class="pdf-sig-val">${esc(d.responsibleDesignation)}</div></div></div><div class="pdf-signature-wrap"><div class="pdf-signature-label">Signature</div><div class="pdf-signature-large">${sigImg(d.conradSig)}</div></div></div>
   </div>
-  <div class="pdf-section after">SECTION MUST BE COMPLETED AND SIGNED AFTER COMPLETION OF WORK</div>
-  <div class="pdf-complete">
-    <div class="pdf-completion-left">
-      <div class="pdf-block-row"><div class="pdf-bg">I confirm the work has been completed satisfactorily</div><div class="pdf-completion-value">${esc(d.completeSatisfactory)}</div></div>
-      <div class="pdf-block-row"><div class="pdf-bg">I confirm all drawings, O&M Manuals, Guarantees have been received</div><div class="pdf-completion-value">${esc(d.completeDocuments)}</div></div>
-      <div class="pdf-block-row"><div class="pdf-bg">All Supplementary permits relating to this permit have been closed off</div><div class="pdf-completion-value">${esc(d.completePermits)}</div></div>
-      <div class="pdf-block-row"><div class="pdf-bg">All debris related to work has been cleared from site.</div><div class="pdf-completion-value">${esc(d.completeDebris)}</div></div>
-    </div>
-    <div class="pdf-completion-right">
-      <div class="pdf-completion-row"><div class="pdf-lab">Name of Responsible Conrad Team Member</div><div class="pdf-val">${esc(d.completionName)}</div></div>
-      <div class="pdf-completion-row"><div class="pdf-lab">Employee ID</div><div class="pdf-val">${esc(d.completionId)}</div></div>
-      <div class="pdf-completion-row"><div class="pdf-lab">Designation</div><div class="pdf-val">${esc(d.completionDesignation)}</div></div>
-      <div class="pdf-completion-row"><div class="pdf-lab">Completion Date</div><div class="pdf-val">${esc(formatDate(d.completionDate))}</div></div>
-      <div class="pdf-completion-sign-label">Signature</div><div class="pdf-completion-sign-box">${d.completionSig?`<img class="pdf-completion-signature" src="${d.completionSig}">`:''}</div>
-    </div>
-  </div>${pdfFooter(2)}</section>`;
+  ${pdfFooter(2)}</section>`;
 }
 async function generatePDF(){
-  const missing=reviewMode?validateCompletion():validateForm();
+  const missing=validateForm();
   if(missing.length){showModal('Required Information Missing',`<p>Please complete the highlighted fields before generating the final PDF:</p><div class="missing-list">${missing.map(x=>'• '+esc(x)).join('<br>')}</div>`,lastMissingTarget);return;}
   const d=collectData();buildReport(d);toast('Generating PDF report...');
   try{
@@ -706,15 +661,21 @@ async function generatePDF(){
     const sheets=[...$('reportMount').querySelectorAll('.pdf-sheet')];
     const {jsPDF}=window.jspdf;const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4',compress:true});
     for(let i=0;i<sheets.length;i++){
-      const canvas=await html2canvas(sheets[i],{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false,letterRendering:true,removeContainer:true});
-      const imgData=canvas.toDataURL('image/jpeg',0.9);
+      const renderScale=Math.min(3,Math.max(2.25,(window.devicePixelRatio||1)*1.5));
+      const canvas=await html2canvas(sheets[i],{scale:renderScale,backgroundColor:'#ffffff',useCORS:true,logging:false,letterRendering:true,removeContainer:true,imageTimeout:15000});
+      const targetPageBytes=360*1024;
+      let jpegQuality=.86,imgData=canvas.toDataURL('image/jpeg',jpegQuality);
+      const dataBytes=dataUrl=>Math.ceil((dataUrl.length-dataUrl.indexOf(',')-1)*.75);
+      while(dataBytes(imgData)>targetPageBytes&&jpegQuality>.48){jpegQuality=Math.max(.48,jpegQuality-.06);imgData=canvas.toDataURL('image/jpeg',jpegQuality)}
+      let imageCanvas=canvas;
+      while(dataBytes(imgData)>targetPageBytes&&imageCanvas.width>700){const reduced=document.createElement('canvas');reduced.width=Math.round(imageCanvas.width*.85);reduced.height=Math.round(imageCanvas.height*.85);const reducedContext=reduced.getContext('2d');reducedContext.imageSmoothingEnabled=true;reducedContext.imageSmoothingQuality='high';reducedContext.drawImage(imageCanvas,0,0,reduced.width,reduced.height);imageCanvas=reduced;imgData=imageCanvas.toDataURL('image/jpeg',.58)}
       if(i>0)pdf.addPage();
       pdf.addImage(imgData,'JPEG',5,5,200,287,undefined,'FAST');
     }
     pdf.save(`Permit_to_Work_Report.pdf`);toast('PDF report generated');
   }catch(e){console.error(e);showModal('PDF Fallback',`<p>The direct PDF library is not available in this browser. Please use the browser print option and choose <b>Save as PDF</b>.</p>`);window.print();}
 }
-window.addEventListener('load',()=>{initDates();initSignatures();setupCustomTimePicker();setupDateTimePickers();captureEnglishInterface();if($('interfaceLanguage'))setInterfaceLanguage(localStorage.getItem('permitInterfaceLanguage')||'en');else currentInterfaceLanguage='en';setupAutoPrediction();['workDescription','ppeUsed'].forEach(id=>{$(id)?.addEventListener('input',e=>autoResizeTextarea(e.target));autoResizeTextarea($(id))});if(window.innerWidth<=900&&document.body.dataset.generatedPermit!=='true')document.querySelector('.actions')?.classList.add('mobile-collapsed');['validDate','expireDate','issueDate','completionDate'].forEach(id=>$(id)?.addEventListener('blur',normalizeDateFields));const raw=$('embeddedPermitData')?.textContent.trim();if(raw){try{const d=JSON.parse(raw);enterReviewMode(d);if(document.body.dataset.finalized==='true')enterFinalizedMode(d)}catch(e){console.error('Unable to load embedded permit data',e)}}});
+window.addEventListener('load',()=>{initDates();initSignatures();setupCustomTimePicker();setupDateTimePickers();captureEnglishInterface();if($('interfaceLanguage'))setInterfaceLanguage(localStorage.getItem('permitInterfaceLanguage')||'en');else currentInterfaceLanguage='en';setupAutoPrediction();['workDescription','ppeUsed'].forEach(id=>{$(id)?.addEventListener('input',e=>autoResizeTextarea(e.target));autoResizeTextarea($(id))});if(window.innerWidth<=900&&document.body.dataset.generatedPermit!=='true')document.querySelector('.actions')?.classList.add('mobile-collapsed');['validDate','expireDate','issueDate'].forEach(id=>$(id)?.addEventListener('blur',normalizeDateFields));const raw=$('embeddedPermitData')?.textContent.trim();if(raw){try{const d=JSON.parse(raw);enterReviewMode(d);if(document.body.dataset.finalized==='true')enterFinalizedMode(d)}catch(e){console.error('Unable to load embedded permit data',e)}}});
 window.addEventListener('resize',()=>{clearTimeout(window._rs);window._rs=setTimeout(()=>{document.querySelectorAll('.sign-pad').forEach(setCanvasSize);resizeLongTextFields()},250)});
 </script>
 </body>
